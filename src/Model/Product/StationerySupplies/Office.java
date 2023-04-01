@@ -1,16 +1,19 @@
-package Product.StationerySupplie;
+package Model.Product.StationerySupplies;
 
-public class Office extends StationerySupplie{
+public class Office extends StationerySupplies {
 
     private int numberOfSheets;
     private String paperType;
 
     //0000000000000000000000000000000000000000000000000===CONSTRUCTOR
 
-    Office(String country, int numberOfSheets, String paperType) {
-        super(country);
+    Office(String country, int numberOfSheets, String paperType, String name, int nmbrAvailable,double price) {
+        super(country,name,nmbrAvailable,price);
         this.numberOfSheets = numberOfSheets;
         this.paperType = paperType;
+
+        //set ID for every object with its properties
+        this.ID = new StringBuilder(this.getClass().getName()+"-"+name+"-"+numberOfSheets+"Sheets-"+paperType+"-"+country);
     }
 
     public int getNumberOfSheets() {

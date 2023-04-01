@@ -1,4 +1,4 @@
-package Product.Digital_Product;
+package Model.Product.Digital_Product;
 
 public class PC extends DigitalProduct {
 
@@ -7,11 +7,14 @@ public class PC extends DigitalProduct {
 
     //0000000000000000000000000000000000000000000000000===constructor
 
-    PC(int weight, int size, String CPU_Model, int ramMemoryCapacity) {
+    PC(int weight, int size, String name, int numberOfAvailable, String CPU_Model, int ramMemoryCapacity,double price) {
 
-        super(weight, size);
+        super(weight, size, name, numberOfAvailable,price);
         this.CPU_Model = CPU_Model;
         this.ramMemoryCapacity = ramMemoryCapacity;
+
+        //set ID for every object with its properties
+        this.ID=new StringBuilder(this.getClass().getName() + name + "-" +CPU_Model+ "-" + ramMemoryCapacity);
     }
 
     public int getRamMemoryCapacity() {

@@ -1,10 +1,8 @@
-package User_account;
-
-import java.util.ArrayList;
+package Model.User_account;
 
 public class Buyer extends Account{
 
-//    ArrayList<Product>
+//    ArrayList<Model.Product>
 //    ArrayList<Factor>
 
     private double balance;

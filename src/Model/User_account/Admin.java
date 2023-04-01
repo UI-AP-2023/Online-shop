@@ -1,10 +1,8 @@
-package User_account;
-
-import java.util.ArrayList;
+package Model.User_account;
 
 public class Admin extends Account{
 
-//    ArrayList<Product>
+//    ArrayList<Model.Product>
 //    ArrayList<BuyingREQUEST>
 //    ArrayList<SignupRequest>
 

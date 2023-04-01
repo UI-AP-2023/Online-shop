@@ -1,4 +1,4 @@
-package User_account;
+package Model.User_account;
 
 public abstract class Account {
 

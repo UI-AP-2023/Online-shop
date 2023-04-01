@@ -1,4 +1,4 @@
-package Product.StationerySupplie;
+package Model.Product.StationerySupplies;
 
 public enum PencilType {
 

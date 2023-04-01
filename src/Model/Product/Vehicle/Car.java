@@ -1,26 +1,29 @@
-package Product.Vehicle;
+package Model.Product.Vehicle;
 
 public class Car extends Vehicle {
 
-    private int EngineVolume;
+    private int engineVolume;
     private boolean automaticGearbox;
 
     //0000000000000000000000000000000000000000000000000===CONSTRUCTOR
 
-    Car(String companyName,int EngineVolume, boolean automaticGearbox){
+    Car(String companyName,int EngineVolume, boolean automaticGearbox,String name, int nmbrAvailable,double price){
 
-        super(companyName);
+        super(companyName,name,nmbrAvailable,price);
 
-        this.EngineVolume = EngineVolume;
+        this.engineVolume = EngineVolume;
         this.automaticGearbox = automaticGearbox;
+
+        //set ID
+        this.ID = new StringBuilder(companyName+"-"+name+"-"+engineVolume);
     }
 
     public int getEngineVolume() {
-        return EngineVolume;
+        return engineVolume;
     }
 
     public void setEngineVolume(int engineVolume) {
-        EngineVolume = engineVolume;
+        this.engineVolume = engineVolume;
     }
 
     public boolean isAutomaticGearbox() {
