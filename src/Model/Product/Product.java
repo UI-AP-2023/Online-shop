@@ -22,7 +22,16 @@ public abstract class Product {
         staticNumber++;
     }
 
+    //-------------------------------------------------------------------------------------
+
     public String getID() {
         return ID.toString();
+    }
+
+    //-------------------------------------------------------------------------------------
+
+    @Override
+    public String toString() {
+        return number + " . " + name + "\n" + price + "$";
     }
 }
