@@ -3,16 +3,23 @@ package Model.User_account;
 public abstract class Account {
 
     private String userName; // ----Must be UUID
-    private String Email; // -------should use Regex for validating
+    private String email; // -------should use Regex for validating
     private String phoneNumber; //-------should use Regex for validating
     private String password; //-------should use Regex for validating
     private Role role;
 
 
-    //======================={The constructor must be added...
+    //======================={The constructor...====================================
+    Account(String userName, String email, String phoneNumber, String password){
+
+        this.userName = userName;
+        this.email = email;
+        this.phoneNumber = phoneNumber;
+        this.password = password;
+    }
 
 
-
+//############################################################################################3
     public String getUserName() {
         return userName;
     }
@@ -22,11 +29,11 @@ public abstract class Account {
     }
 
     public String getEmail() {
-        return Email;
+        return email;
     }
 
     public void setEmail(String email) {
-        Email = email;
+        this.email = email;
     }
 
     public String getPhoneNumber() {
