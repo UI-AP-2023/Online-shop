@@ -40,4 +40,9 @@ public class Buyer extends Account{
     }
 
     //--------------------------------------------------
+
+    @Override
+    public String toString(){
+        return "USER NAME: "+userName + ", EMAIL: " + email;
+    }
 }

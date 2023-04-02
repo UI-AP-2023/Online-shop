@@ -15,6 +15,10 @@ public abstract class Product {
         this.price = price;
         this.numberOfAvailable = numberOfAvailable;
     }
+
+    public String getID() {
+        return ID.toString();
+    }
 }
 
 // enum Category{ ---------------------------------=================
