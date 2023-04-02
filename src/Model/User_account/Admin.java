@@ -1,6 +1,7 @@
 package Model.User_account;
 
 import Model.Product.Product;
+import Model.Requests.SignupRequest;
 
 import java.util.ArrayList;
 
@@ -10,7 +11,7 @@ public class Admin extends Account{
 
     ArrayList<Model.Product.Product> products = new ArrayList<>();
     //    ArrayList<BuyingREQUEST>
-    //    ArrayList<SignupRequest>
+    ArrayList<SignupRequest> signupRequests = new ArrayList<>();
 
 
     private Admin(String userName, String email, String phoneNumber, String password) {
@@ -38,5 +39,7 @@ public class Admin extends Account{
 
     //-------------------------------------------------
 
-    //void AddSignupRequest
+    public void AddSignupRequest(SignupRequest request){
+        signupRequests.add(request);
+    }
 }
