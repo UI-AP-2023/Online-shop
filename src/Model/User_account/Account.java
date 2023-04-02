@@ -2,11 +2,11 @@ package Model.User_account;
 
 public abstract class Account {
 
-    private String userName; // ----Must be UUID
-    private String email; // -------should use Regex for validating
-    private String phoneNumber; //-------should use Regex for validating
-    private String password; //-------should use Regex for validating
-    private Role role;
+    protected String userName; // ----Must be UUID
+    protected String email; // -------should use Regex for validating
+    protected String phoneNumber; //-------should use Regex for validating
+    protected String password; //-------should use Regex for validating
+    protected Role role;
 
 
     //======================={The constructor...====================================
