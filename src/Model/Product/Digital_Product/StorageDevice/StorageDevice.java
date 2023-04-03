@@ -31,7 +31,7 @@ public abstract class StorageDevice extends DigitalProduct {
 //=================================================================Creatable
 class FlashMemory extends StorageDevice{
 
-    private int USB_Version;
+    private int USB_Version; // must be between 1 and 4
 
     //0000000000000000000000000000000000000000000000000===constructor
 
