@@ -1,5 +1,7 @@
 package Model.Product;
 
+import java.util.ArrayList;
+
 public abstract class Product {
 
     protected StringBuilder ID;
@@ -10,7 +12,9 @@ public abstract class Product {
     protected static ProductCategory category;
     private static int staticNumber=1;
     protected int number;
-    //==========================constructor must be added
+    public ArrayList<String> comments = new ArrayList<>();
+
+    //======================================================================================
 
     protected Product(String name, int numberOfAvailable, double price){
 

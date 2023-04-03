@@ -10,7 +10,9 @@ public class Admin extends Account{
     private static Admin admin;
 
     ArrayList<Model.Product.Product> products = new ArrayList<>();
-    //    ArrayList<BuyingREQUEST>
+
+    //    ArrayList<CommentRequest>
+
     ArrayList<SignupRequest> signupRequests = new ArrayList<>();
 
 
@@ -18,7 +20,7 @@ public class Admin extends Account{
         super(userName, email, phoneNumber, password);
     }
 
-    //())))))))))))))))))))))))))))))))))SINGLETON
+    //(((((((((((((((((((((((((((((((((...SINGLETON...))))))))))))))))))))))))))))))))))
 
     static Admin GetAdmin(String userName, String email, String phoneNumber, String password){
         if(admin == null){
@@ -33,12 +35,11 @@ public class Admin extends Account{
         products.add(product);
     }
 
-    //-------------------------------------------------------
-
-    // void AddBuyingRequest
-
     //-------------------------------------------------
 
+    // add comment request
+
+    //--------------------------------------------------
     public void AddSignupRequest(SignupRequest request){
         signupRequests.add(request);
     }
