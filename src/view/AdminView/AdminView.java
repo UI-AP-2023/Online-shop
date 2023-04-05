@@ -5,7 +5,7 @@ import java.util.Scanner;
 public interface AdminView {
 
 //-------------------------------------------------------------------------------------------------
-    static void ShowOptions() {
+    static void AdminShowOptions() {
 
         System.out.println(" PLEASE ENTER THE COMMAND (...ALL LETTERS SHOULD BE CAPITAL...) HELP FOR COMMANDS GUID\n\n");
 

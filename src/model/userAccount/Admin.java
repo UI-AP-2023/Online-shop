@@ -22,7 +22,7 @@ public class Admin extends Account{
 
     //(((((((((((((((((((((((((((((((((...SINGLETON...))))))))))))))))))))))))))))))))))
 
-    static Admin GetAdmin(String userName, String email, String phoneNumber, String password){
+    public static Admin getAdmin(String userName, String email, String phoneNumber, String password){
         if(admin == null){
             admin = new Admin(userName, email, phoneNumber, password);
         }
