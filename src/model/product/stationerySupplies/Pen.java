@@ -1,5 +1,7 @@
 package model.product.stationerySupplies;
 
+import model.ModelData;
+
 public class Pen extends StationerySupplies {
 
     private String color;
@@ -12,6 +14,9 @@ public class Pen extends StationerySupplies {
 
         //set ID for every object with its properties
         this.ID=new StringBuilder(this.getClass().getName()+"-"+name+"-"+color+"-"+country);
+
+        ModelData.getProducts().add(this);
+
     }
 
     public String getColor() {

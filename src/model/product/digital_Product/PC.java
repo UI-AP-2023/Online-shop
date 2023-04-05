@@ -1,5 +1,7 @@
 package model.product.digital_Product;
 
+import model.ModelData;
+
 public class PC extends DigitalProduct {
 
     private String CPU_Model;
@@ -15,6 +17,9 @@ public class PC extends DigitalProduct {
 
         //set ID for every object with its properties
         this.ID=new StringBuilder(this.getClass().getName() + name + "-" +CPU_Model+ "-" + ramMemoryCapacity);
+
+        ModelData.getProducts().add(this);
+
     }
 
     public int getRamMemoryCapacity() {

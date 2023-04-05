@@ -1,6 +1,8 @@
 package view;
 
 import controller.LoginPageController;
+import model.ModelData;
+import model.userAccount.Buyer;
 
 import java.util.Scanner;
 
@@ -14,17 +16,21 @@ public interface LoginPageView {
 
         int LoginOrder = scanner.nextInt();
 
-        switch (LoginOrder){
+        switch (LoginOrder) {
 
-            case 1:{LoginView();}
+            case 1: {
+                LoginView();
+            }
 
-            case 2:{SignupView();}
+            case 2: {
+                SignupView();
+            }
         }
     }
 
     //====================================================================
 
-    static void LoginView(){
+    static void LoginView() {
 
         System.out.println("USER NAME: ");
         String UserName = scanner.nextLine();
@@ -40,17 +46,76 @@ public interface LoginPageView {
     static void SignupView() {
 
         System.out.println("\nUSER NAME: ");
-        String userName = scanner.nextLine();
-        System.out.println("PASSWORD(4 letters at least and it should has 1 uppercase character , 1 lowercase and 1 number at least): ");
-        String password = scanner.nextLine();
-        System.out.println("EMAIL: ");
-        String email = scanner.nextLine();
-        System.out.println("PHONE NUMBER: ");
-        String phone = scanner.nextLine();
-        System.out.println();// just an end line
 
-        // controller sign up
-        LoginPageController.SignupCheck(userName, password, email, phone);
+        String userName, password = null, email=null, phone=null;
+
+        while (true) {
+
+            boolean userNameCheck = true;
+            userName = scanner.nextLine();
+
+            for (Buyer customer : ModelData.getCustomers()) {
+
+                if (customer.getUserName().equals(userName)) {
+                    System.out.println("THIS USER NAME IS  ALREADY EXIST , TRY AGAIN: ");
+                    userNameCheck = false;
+                    break;
+                }
+            }
+
+            if(userNameCheck)
+                break;
+        }
+
+        //---------------------------------------------------------------------------------------------PASSWORD
+
+        System.out.println("PASSWORD(4 letters at least and it should has 1 uppercase character , 1 lowercase and 1 number at least): ");
+        /*
+          get password till when its valid
+         */
+        boolean passwordChecked = false;
+        while (!passwordChecked) {
+            password = scanner.nextLine();
+
+            if (!LoginPageController.PasswordCheck(password)) {
+                System.out.println("PASSWORD IS NOT VALID, ENTER ANOTHER ONE");
+            } else {
+                passwordChecked = true;
+            }
+        }
+
+        //------------------------------------------------------------------------------------------------EMAIL
+        System.out.println("EMAIL: ");
+
+        boolean emailChecked = false;
+        while (!emailChecked) {
+            email = scanner.nextLine();
+
+            if (!LoginPageController.EmailCheck(email)) {
+                System.out.println("EMAIL IS NOT VALID, ENTER ANOTHER ONE");
+            } else {
+                emailChecked = true;
+            }
+        }
+
+        //-----------------------------------------------------------------------------------------------Phone Number
+        System.out.println("PHONE NUMBER: ");
+
+        boolean phoneNumberChecked = false;
+        while (!phoneNumberChecked) {
+
+            phone = scanner.nextLine();
+
+            if (!LoginPageController.PhoneNumberCheck(phone)) {
+                System.out.println("EMAIL IS NOT VALID, ENTER ANOTHER ONE");
+            } else {
+                phoneNumberChecked = true;
+            }
+        }
+
+        LoginPageController.SignupController(userName, password, phone, email);
+
+        System.out.println("...YOU SIGNED UP SUCCESSFULLY...\n");
     }
 
     //===================================================================
@@ -64,7 +129,7 @@ public interface LoginPageView {
 
     //======================================================================
 
-    static void InvalidParametersView(){
+    static void InvalidParametersView() {
         System.out.println("\n...YOUR EMAIL OR PHONE NUMBER OR YOUR PASSWORD IS NOT VALID FOR SIGNING UP...\nPLEASE TRY AGAIN\n");
         SignupView();
     }

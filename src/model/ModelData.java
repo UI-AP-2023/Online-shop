@@ -56,12 +56,6 @@ public abstract class ModelData {
         customers.add(customer);
     }
 
-    //--------------------------------------------------------
-
-    public static void addProduct(Product product) {
-        products.add(product);
-    }
-
     //---------------------------------------------------------
 
     public static void addCommentRequest(Comment comment) {

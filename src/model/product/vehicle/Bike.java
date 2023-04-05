@@ -1,5 +1,7 @@
 package model.product.vehicle;
 
+import model.ModelData;
+
 public class Bike extends Vehicle{
 
     private BikeType type;
@@ -11,6 +13,9 @@ public class Bike extends Vehicle{
 
         //set id
         this.ID= new StringBuilder(companyName+"-"+name+"-"+type.toString());
+
+        ModelData.getProducts().add(this);
+
     }
 
     public BikeType getType() {

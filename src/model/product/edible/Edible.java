@@ -1,5 +1,6 @@
 package model.product.edible;
 
+import model.ModelData;
 import model.product.Product;
 import model.product.ProductCategory;
 
@@ -20,6 +21,8 @@ public class Edible extends Product {
         //set ID for every object with its properties
         this.ID = new StringBuilder(name+staticID);
         staticID++;
+
+        ModelData.getProducts().add(this);
 
     }
 

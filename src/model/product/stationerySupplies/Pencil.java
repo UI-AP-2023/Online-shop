@@ -1,5 +1,7 @@
 package model.product.stationerySupplies;
 
+import model.ModelData;
+
 public class Pencil extends StationerySupplies {
 
     private PencilType type;
@@ -12,6 +14,10 @@ public class Pencil extends StationerySupplies {
 
         //set ID for every object with its properties
         this.ID=new StringBuilder(this.getClass().getName()+"-"+name+"-"+type.toString()+"-"+country);
+
+        ModelData.getProducts().add(this);
+
+
     }
 
     public PencilType getType() {

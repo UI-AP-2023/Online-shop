@@ -1,5 +1,7 @@
 package model.product.stationerySupplies;
 
+import model.ModelData;
+
 public class Office extends StationerySupplies {
 
     private int numberOfSheets;
@@ -14,6 +16,9 @@ public class Office extends StationerySupplies {
 
         //set ID for every object with its properties
         this.ID = new StringBuilder(this.getClass().getName()+"-"+name+"-"+numberOfSheets+"Sheets-"+paperType+"-"+country);
+
+        ModelData.getProducts().add(this);
+
     }
 
     public int getNumberOfSheets() {

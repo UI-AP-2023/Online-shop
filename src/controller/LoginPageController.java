@@ -39,41 +39,29 @@ public interface LoginPageController {
 
     //=============================================================================================================
 
-    static void SignupCheck(String username, String password, String email, String phone) {
+    static boolean EmailCheck (String email) {
 
-        boolean emailVerified = false;
-        boolean passwordVerified = false;
-        boolean phoneVerified = false;
-
-        //-----------------------------------------------------------------------------email
-        Pattern emailPattern = Pattern.compile("^\\D\\w+@\\D+\\.(org|com)");
+        Pattern emailPattern = Pattern.compile("^\\w+@\\D+\\.(org|com)");
         Matcher emailMatcher = emailPattern.matcher(email);
-        if (emailMatcher.find()) {
-            emailVerified = true;
-        }
-        //---------------------------------------------------------------------------------password
-
-        Pattern passwordPattern = Pattern.compile("^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[!@#~`\\-_$%^&*+=])[a-zA-z\\d!@#~`\\-_$%^&*+=]{4,}$");
-        Matcher passwordMatcher = passwordPattern.matcher(password);
-        if (passwordMatcher.find()) {
-            passwordVerified = true;
-        }
-        //--------------------------------------------------------------------------------------
-
-        Pattern phoneNumberPattern = Pattern.compile("^\\d{11}$");
-        Matcher phoneNumberMatcher = phoneNumberPattern.matcher(phone);
-        if (phoneNumberMatcher.find()) {
-            phoneVerified = true;
-        }
-
-        if(emailVerified && passwordVerified && phoneVerified){
-            SignupController(username, password, phone, email);
-        }else {
-            LoginPageView.InvalidParametersView();
-        }
-
+        return emailMatcher.find();
     }
 
+    //=================================================================================================================
+
+    static boolean PhoneNumberCheck(String phone) {
+
+        Pattern phoneNumberPattern = Pattern.compile("^0\\d{10}$");
+        Matcher phoneNumberMatcher = phoneNumberPattern.matcher(phone);
+        return phoneNumberMatcher.find();
+    }
+
+    //=================================================================================================================
+
+    static boolean PasswordCheck(String password){
+        Pattern passwordPattern = Pattern.compile("^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[!@#~`\\-_$%^&*+=])[a-zA-z\\d!@#~`\\-_$%^&*+=]{4,}$");
+        Matcher passwordMatcher = passwordPattern.matcher(password);
+        return passwordMatcher.find();
+    }
 
     //====================================================================================================
 

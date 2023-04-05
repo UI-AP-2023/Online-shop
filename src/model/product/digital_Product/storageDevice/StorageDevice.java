@@ -1,5 +1,6 @@
 package model.product.digital_Product.storageDevice;
 
+import model.ModelData;
 import model.product.digital_Product.DigitalProduct;
 
 //================================================================
@@ -42,6 +43,9 @@ class FlashMemory extends StorageDevice{
 
         //set ID for every object with its properties
         this.ID = new StringBuilder(this.getClass().getName()+"-"+name+"-"+USB_Version);
+
+        ModelData.getProducts().add(this);
+
     }
 
 
@@ -71,6 +75,9 @@ class SSD extends StorageDevice {
 
         //set ID for every object with its properties
         this.ID = new StringBuilder(this.getClass().getName()+"-"+name+"-"+capacity+"GB-"+readingSpeed + "RS-" + writingSpeed + "WS");
+
+        ModelData.getProducts().add(this);
+
     }
 
 

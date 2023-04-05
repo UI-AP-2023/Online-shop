@@ -1,5 +1,7 @@
 package model.product.vehicle;
 
+import model.ModelData;
+
 public class Car extends Vehicle {
 
     private int engineVolume;
@@ -16,6 +18,8 @@ public class Car extends Vehicle {
 
         //set ID
         this.ID = new StringBuilder(companyName+"-"+name+"-"+engineVolume);
+
+        ModelData.getProducts().add(this);
     }
 
     public int getEngineVolume() {
