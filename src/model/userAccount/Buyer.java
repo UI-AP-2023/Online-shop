@@ -13,7 +13,7 @@ public class Buyer extends Account{
 
     private double balance;
 
-    Buyer(String userName, String email, String phoneNumber, String password) {
+    public Buyer(String userName, String password, String phoneNumber, String email) {
         super(userName, email, phoneNumber, password);
     }
 

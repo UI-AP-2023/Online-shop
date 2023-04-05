@@ -39,17 +39,33 @@ public interface LoginPageView {
 
     static void SignupView() {
 
-        System.out.println("USER NAME: ");
+        System.out.println("\nUSER NAME: ");
         String userName = scanner.nextLine();
-        System.out.println("PASSWORD: ");
+        System.out.println("PASSWORD(4 letters at least and it should has 1 uppercase character , 1 lowercase and 1 number at least): ");
         String password = scanner.nextLine();
         System.out.println("EMAIL: ");
         String email = scanner.nextLine();
         System.out.println("PHONE NUMBER: ");
         String phone = scanner.nextLine();
+        System.out.println();// just an end line
 
         // controller sign up
+        LoginPageController.SignupCheck(userName, password, email, phone);
     }
 
+    //===================================================================
 
+    static void NotFoundView() {
+
+        System.out.println("\nYOUR USER NAME OR PASSWORD IS NOT CORRECT\n");
+
+        ShowLoginPage();
+    }
+
+    //======================================================================
+
+    static void InvalidParametersView(){
+        System.out.println("\n...YOUR EMAIL OR PHONE NUMBER OR YOUR PASSWORD IS NOT VALID FOR SIGNING UP...\nPLEASE TRY AGAIN\n");
+        SignupView();
+    }
 }
