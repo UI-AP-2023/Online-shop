@@ -22,17 +22,26 @@ public interface LoginPageController {
     static void loginCheck(String username, String password) {
 
         // if  customer
+        boolean isCustomer = false;
         for (Buyer buyer : ModelData.getCustomers()) {
             if (Objects.equals(buyer.getUserName(), username) && Objects.equals(buyer.getPassword(), password)) {
+
+                // to know who is using the program
                 ModelData.setYou(buyer);
+                isCustomer = true;
                 BuyerView.showBuyerOptions();
-                break;
+                //------------------------------------
+                LoginPageView.showLoginPage();
             }
         }
 
         //if s/he is admin
-        if (Objects.equals(ModelData.getAdmin().getUserName(), username) && Objects.equals(ModelData.getAdmin().getPassword(), password)) {
+        if (!isCustomer && Objects.equals(ModelData.getAdmin().getUserName(), username) && Objects.equals(ModelData.getAdmin().getPassword(), password)) {
+
             AdminView.AdminShowOptions();
+            //--------------------------------
+            LoginPageView.showLoginPage();
+
         } else {
             LoginPageView.notFoundView();
         }

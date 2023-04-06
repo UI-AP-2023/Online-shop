@@ -39,6 +39,16 @@ public interface BuyerController {
         ModelData.getYou().setPassword(password);
     }
 
+    static void setEmail(String email) {
+
+        ModelData.getYou().setEmail(email);
+    }
+
+    static void setPhoneNumber(String phoneNumber) {
+
+        ModelData.getYou().setPhoneNumber(phoneNumber);
+    }
+
     //---------------------------------------------------------------------------
 
 }

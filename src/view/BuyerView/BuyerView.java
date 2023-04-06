@@ -2,10 +2,9 @@ package view.BuyerView;
 
 import controller.BuyerController;
 import controller.LoginPageController;
+import view.LoginPageView;
 
 import java.util.Scanner;
-
-import static view.LoginPageView.scanner;
 
 public interface BuyerView {
 
@@ -14,6 +13,7 @@ public interface BuyerView {
         Scanner scanner = new Scanner(System.in);
         print("1. PRODUCTS PAGE");
         print("2. MY PROFILE");
+        print("3. EXIT");
 
         int order = scanner.nextInt();
 
@@ -24,6 +24,8 @@ public interface BuyerView {
             case 1->{}
 
             case 2 -> showBuyerMainMenu();
+
+            case 3 -> LoginPageView.showLoginPage();
         }
     }
 
@@ -35,7 +37,6 @@ public interface BuyerView {
         print("3.INCREMENT BALANCE");
         print("4.SHOW MY BUYING CART");
         print("5.SHOW MY INVOICES");
-        print("6.EXIT");
 
         Scanner scanner = new Scanner(System.in);
         int order = scanner.nextInt();
@@ -45,20 +46,14 @@ public interface BuyerView {
 
             case 1 -> showMyProfile();
 
-            case 2 -> {
-            }
+            case 2 -> editMyProfile();
 
-            case 3 -> {
-            }
+            case 3 -> {}
 
-            case 4 -> {
-            }
+            case 4 -> {}
 
-            case 5 -> {
-            }
+            case 5 -> {}
 
-            case 6 -> {
-            }
         }
 
     }
@@ -85,11 +80,61 @@ public interface BuyerView {
 
             case 2 -> changePassword();
 
-            case 3 -> {}
+            case 3 -> changeEmail();
 
-            case 4 ->{}
+            case 4 -> changePhoneNumber();
 
         }
+    }
+
+    //-------------------------------------------------------------
+
+    static void changePhoneNumber() {
+        print("PLEASE ENTER THE NEW PHONE NUMBER: ");
+
+        Scanner scanner = new Scanner(System.in);
+        String phoneNumber;
+
+        while (true) {
+            phoneNumber = scanner.nextLine();
+
+            if (LoginPageController.phoneNumberCheck(phoneNumber)) {
+
+                BuyerController.setPhoneNumber(phoneNumber);
+
+                print("\nYOUR LINKED PHONE NUMBER CHANGED SUCCESSFULLY\n");
+                break;
+
+            } else
+                print("\nTHIS PHONE NUMBER IS NOT VALID , TRY ANOTHER ONE: ");
+        }
+
+    }
+
+    //--------------------------------------------------
+
+    static void changeEmail() {
+
+        print("PLEASE ENTER THE NEW EMAIL: ");
+
+        Scanner scanner = new Scanner(System.in);
+        String email;
+
+        while (true) {
+            email = scanner.nextLine();
+
+            if (LoginPageController.emailCheck(email)) {
+
+                BuyerController.setEmail(email);
+
+                print("\nYOUR EMAIL CHANGED SUCCESSFULLY\n");
+                break;
+
+            } else
+                print("\nTHIS EMAIL IS NOT VALID , TRY ANOTHER ONE: ");
+        }
+
+
     }
 
     //-------------------------

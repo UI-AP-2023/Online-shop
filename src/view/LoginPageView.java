@@ -99,7 +99,7 @@ public interface LoginPageView {
             phone = scanner.nextLine();
 
             if (!LoginPageController.phoneNumberCheck(phone)) {
-                System.out.println("EMAIL IS NOT VALID, ENTER ANOTHER ONE");
+                System.out.println("PHONE NUMBER IS NOT VALID, ENTER ANOTHER ONE");
             } else {
                 phoneNumberChecked = true;
             }
