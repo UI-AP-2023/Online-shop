@@ -28,6 +28,10 @@ public abstract class ModelData {
 
     //-------------------------------------------------------
 
+    private static Buyer YOU ;
+
+    //------------------------------------------------------
+
     public static ArrayList<Buyer> getCustomers() {
         return customers;
     }
@@ -60,6 +64,16 @@ public abstract class ModelData {
 
     public static void addCommentRequest(Comment comment) {
         commentsAwaiting.add(comment);
+    }
+
+    //------------------------------------------------------------------------
+
+    public static Buyer getYOU() {
+        return YOU;
+    }
+
+    public static void setYOU(Buyer YOU) {
+        ModelData.YOU = YOU;
     }
 
     //----------------------------------------------------------

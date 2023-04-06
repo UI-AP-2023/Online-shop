@@ -1,13 +1,7 @@
-import model.product.Product;
-import model.userAccount.Buyer;
-import javax.xml.stream.events.Comment;
-import java.util.ArrayList;
+import view.LoginPageView;
 
 public class Main {
-
-
     public static void main(String[] args) {
-
-        System.out.println("TEST");
+        LoginPageView.showLoginPage();
     }
 }

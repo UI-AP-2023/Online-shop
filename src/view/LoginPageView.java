@@ -10,40 +10,41 @@ public interface LoginPageView {
 
     Scanner scanner = new Scanner(System.in);
 
-    static void ShowLoginPage() {
+    static void showLoginPage() {
 
         System.out.println("1.Log in\n2.Sign up");
 
         int LoginOrder = scanner.nextInt();
+        scanner.nextLine();
 
         switch (LoginOrder) {
 
             case 1: {
-                LoginView();
+                loginView();
             }
 
             case 2: {
-                SignupView();
+                signupView();
             }
         }
     }
 
     //====================================================================
 
-    static void LoginView() {
+    static void loginView() {
 
         System.out.println("USER NAME: ");
         String UserName = scanner.nextLine();
         System.out.println("PASSWORD: ");
         String Password = scanner.nextLine();
 
-        LoginPageController.LoginCheck(UserName, Password);
+        LoginPageController.loginCheck(UserName, Password);
     }
 
 
     //====================================================================
 
-    static void SignupView() {
+    static void signupView() {
 
         System.out.println("\nUSER NAME: ");
 
@@ -77,7 +78,7 @@ public interface LoginPageView {
         while (!passwordChecked) {
             password = scanner.nextLine();
 
-            if (!LoginPageController.PasswordCheck(password)) {
+            if (!LoginPageController.passwordCheck(password)) {
                 System.out.println("PASSWORD IS NOT VALID, ENTER ANOTHER ONE");
             } else {
                 passwordChecked = true;
@@ -91,7 +92,7 @@ public interface LoginPageView {
         while (!emailChecked) {
             email = scanner.nextLine();
 
-            if (!LoginPageController.EmailCheck(email)) {
+            if (!LoginPageController.emailCheck(email)) {
                 System.out.println("EMAIL IS NOT VALID, ENTER ANOTHER ONE");
             } else {
                 emailChecked = true;
@@ -106,31 +107,33 @@ public interface LoginPageView {
 
             phone = scanner.nextLine();
 
-            if (!LoginPageController.PhoneNumberCheck(phone)) {
+            if (!LoginPageController.phoneNumberCheck(phone)) {
                 System.out.println("EMAIL IS NOT VALID, ENTER ANOTHER ONE");
             } else {
                 phoneNumberChecked = true;
             }
         }
 
-        LoginPageController.SignupController(userName, password, phone, email);
+        LoginPageController.signupController(userName, password, phone, email);
 
         System.out.println("...YOU SIGNED UP SUCCESSFULLY...\n");
+
+        showLoginPage();
     }
 
     //===================================================================
 
-    static void NotFoundView() {
+    static void notFoundView() {
 
         System.out.println("\nYOUR USER NAME OR PASSWORD IS NOT CORRECT\n");
 
-        ShowLoginPage();
+        showLoginPage();
     }
 
     //======================================================================
 
-    static void InvalidParametersView() {
+    static void invalidParametersView() {
         System.out.println("\n...YOUR EMAIL OR PHONE NUMBER OR YOUR PASSWORD IS NOT VALID FOR SIGNING UP...\nPLEASE TRY AGAIN\n");
-        SignupView();
+        signupView();
     }
 }

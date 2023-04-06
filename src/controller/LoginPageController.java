@@ -19,12 +19,13 @@ public interface LoginPageController {
      * check username and password for customers  if the user is a customer it calls buyers view
      * else if its admin , calls admin view
      */
-    static void LoginCheck(String username, String password) {
+    static void loginCheck(String username, String password) {
 
         // if  customer
         for (Buyer buyer : ModelData.getCustomers()) {
             if (Objects.equals(buyer.getUserName(), username) && Objects.equals(buyer.getPassword(), password)) {
-                BuyerView.ShowBuyerOptions();
+                ModelData.setYOU(buyer);
+                BuyerView.showBuyerOptions();
                 break;
             }
         }
@@ -33,13 +34,13 @@ public interface LoginPageController {
         if (Objects.equals(ModelData.getAdmin().getUserName(), username) && Objects.equals(ModelData.getAdmin().getPassword(), password)) {
             AdminView.AdminShowOptions();
         } else {
-            LoginPageView.NotFoundView();
+            LoginPageView.notFoundView();
         }
     }
 
     //=============================================================================================================
 
-    static boolean EmailCheck (String email) {
+    static boolean emailCheck(String email) {
 
         Pattern emailPattern = Pattern.compile("^\\w+@\\D+\\.(org|com)");
         Matcher emailMatcher = emailPattern.matcher(email);
@@ -48,7 +49,7 @@ public interface LoginPageController {
 
     //=================================================================================================================
 
-    static boolean PhoneNumberCheck(String phone) {
+    static boolean phoneNumberCheck(String phone) {
 
         Pattern phoneNumberPattern = Pattern.compile("^0\\d{10}$");
         Matcher phoneNumberMatcher = phoneNumberPattern.matcher(phone);
@@ -57,7 +58,7 @@ public interface LoginPageController {
 
     //=================================================================================================================
 
-    static boolean PasswordCheck(String password){
+    static boolean passwordCheck(String password){
         Pattern passwordPattern = Pattern.compile("^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[!@#~`\\-_$%^&*+=])[a-zA-z\\d!@#~`\\-_$%^&*+=]{4,}$");
         Matcher passwordMatcher = passwordPattern.matcher(password);
         return passwordMatcher.find();
@@ -65,7 +66,7 @@ public interface LoginPageController {
 
     //====================================================================================================
 
-    static void SignupController(String username, String password, String phone , String email) {
+    static void signupController(String username, String password, String phone , String email) {
 
         Buyer temp = new Buyer(username, password, phone, email);
 
