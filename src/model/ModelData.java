@@ -1,6 +1,7 @@
 package model;
 
 import model.product.Product;
+import model.requests.IncrementBalanceRequest;
 import model.userAccount.Admin;
 import model.userAccount.Buyer;
 import javax.xml.stream.events.Comment;
@@ -8,19 +9,23 @@ import java.util.ArrayList;
 
 public abstract class ModelData {
 
-    private static final ArrayList<Buyer> customers = new ArrayList<>();
+    private static ArrayList<Buyer> customers = new ArrayList<>();
 
     //private static ArrayList<Comment> rejectedComments = new ArrayList<>();
 
     //---------------------------------------------------------
 
-    private static final ArrayList<Product> products = new ArrayList<>();
+    private static ArrayList<Product> products = new ArrayList<>();
 
     //-------------------------------------------------------
 
-    private static final ArrayList<Comment> commentsAwaiting = new ArrayList<>();
+    private static ArrayList<Comment> commentsAwaiting = new ArrayList<>();
 
     //-----------------------------------------------------
+
+    private static ArrayList<IncrementBalanceRequest> incrementBalanceRequests  = new ArrayList<>();
+
+    //--------------------------------------------------------------
     /**
      * The only admin the shop has
      */
@@ -74,6 +79,10 @@ public abstract class ModelData {
 
     public static void setYou(Buyer you) {
         ModelData.you = you;
+    }
+
+    public static ArrayList<IncrementBalanceRequest> getIncrementBalanceRequests() {
+        return incrementBalanceRequests;
     }
 
     //----------------------------------------------------------

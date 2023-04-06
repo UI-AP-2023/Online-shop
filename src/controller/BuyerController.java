@@ -1,6 +1,7 @@
 package controller;
 
 import model.ModelData;
+import model.requests.IncrementBalanceRequest;
 import model.userAccount.Buyer;
 
 import java.util.Objects;
@@ -10,7 +11,8 @@ public interface BuyerController {
     //---------------------------------------------------------------------
     static String getMyProfile() {
         return "User name: " + ModelData.getYou().getUserName() + "\nPassword: " + ModelData.getYou().getPassword()
-                + "\nEmail: " + ModelData.getYou().getEmail() + "\nPhone number: " + ModelData.getYou().getPhoneNumber();
+                + "\nEmail: " + ModelData.getYou().getEmail() + "\nPhone number: " + ModelData.getYou().getPhoneNumber()
+                + "\nBalance: "+ ModelData.getYou().getBalance();
     }
     //---------------------------------------------------------------------
 
@@ -47,6 +49,13 @@ public interface BuyerController {
     static void setPhoneNumber(String phoneNumber) {
 
         ModelData.getYou().setPhoneNumber(phoneNumber);
+    }
+
+    //------------------------------------------------------------------------------
+
+    static void setIncrementBalanceRequest(double amount) {
+
+        IncrementBalanceRequest balanceRequest = new IncrementBalanceRequest(ModelData.getYou(), amount);
     }
 
     //---------------------------------------------------------------------------

@@ -11,9 +11,9 @@ public interface BuyerView {
     static void showBuyerOptions() {
 
         Scanner scanner = new Scanner(System.in);
-        print("1. PRODUCTS PAGE");
+        print("\n1. PRODUCTS PAGE");
         print("2. MY PROFILE");
-        print("3. EXIT");
+        print("3. EXIT\n");
 
         int order = scanner.nextInt();
 
@@ -32,11 +32,11 @@ public interface BuyerView {
     //=================================================================================
 
     static void showBuyerMainMenu() {
-        print("1.SHOW MY PROFILE");
+        print("\n1.SHOW MY PROFILE");
         print("2.EDIT MY PROFILE");
-        print("3.INCREMENT BALANCE");
+        print("3.INCREMENT BALANCE(request to admin)");
         print("4.SHOW MY BUYING CART");
-        print("5.SHOW MY INVOICES");
+        print("5.SHOW MY INVOICES\n");
 
         Scanner scanner = new Scanner(System.in);
         int order = scanner.nextInt();
@@ -48,7 +48,7 @@ public interface BuyerView {
 
             case 2 -> editMyProfile();
 
-            case 3 -> {}
+            case 3 -> incrementBalance();
 
             case 4 -> {}
 
@@ -56,6 +56,20 @@ public interface BuyerView {
 
         }
 
+    }
+
+    //-----------------------------------------------------------------------
+
+    static void incrementBalance() {
+
+        Scanner scanner = new Scanner(System.in);
+        print("\nPLEASE ENTER AMOUNT THAT YOU WANT TO ADD TO YOUR BALANCE: ");
+
+        double amount = scanner.nextDouble();
+
+        BuyerController.setIncrementBalanceRequest(amount);
+
+        print("YOUR REQUEST SENT FOR ADMIN\n");
     }
 
     //------------------------------------------------------------------------------------
@@ -67,7 +81,7 @@ public interface BuyerView {
     //--------------------------------------------------------------------------------------
 
     static void editMyProfile() {
-        print("WHICH PROPERTY YOU WANT TO CHANGE? (1.USER NAME)(2.PASSWORD)(3.EMAIL)(4.PHONE NUMBER)\n");
+        print("\nWHICH PROPERTY YOU WANT TO CHANGE? (1.USER NAME)(2.PASSWORD)(3.EMAIL)(4.PHONE NUMBER)\n");
 
         Scanner scanner = new Scanner(System.in);
 
@@ -90,7 +104,7 @@ public interface BuyerView {
     //-------------------------------------------------------------
 
     static void changePhoneNumber() {
-        print("PLEASE ENTER THE NEW PHONE NUMBER: ");
+        print("\nPLEASE ENTER THE NEW PHONE NUMBER: ");
 
         Scanner scanner = new Scanner(System.in);
         String phoneNumber;
@@ -115,7 +129,7 @@ public interface BuyerView {
 
     static void changeEmail() {
 
-        print("PLEASE ENTER THE NEW EMAIL: ");
+        print("\nPLEASE ENTER THE NEW EMAIL: ");
 
         Scanner scanner = new Scanner(System.in);
         String email;
@@ -182,7 +196,6 @@ public interface BuyerView {
             } else
                 print("\nTHIS PASSWORD IS NOT VALID , TRY ANOTHER ONE: ");
         }
-
 
     }
 

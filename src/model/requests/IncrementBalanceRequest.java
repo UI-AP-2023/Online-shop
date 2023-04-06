@@ -1,5 +1,6 @@
 package model.requests;
 
+import model.ModelData;
 import model.userAccount.Buyer;
 
 public class IncrementBalanceRequest {
@@ -7,10 +8,12 @@ public class IncrementBalanceRequest {
     private final Buyer requester;
     private final double amount;
 
-    IncrementBalanceRequest(Buyer requester, double amount) {
+    public IncrementBalanceRequest(Buyer requester, double amount) {
 
         this.requester = requester;
         this.amount = amount;
+
+        ModelData.getIncrementBalanceRequests().add(this);
     }
 
     //--------------------------------------------------------------------
