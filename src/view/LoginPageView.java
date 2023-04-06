@@ -1,5 +1,6 @@
 package view;
 
+import controller.BuyerController;
 import controller.LoginPageController;
 import model.ModelData;
 import model.userAccount.Buyer;
@@ -19,13 +20,9 @@ public interface LoginPageView {
 
         switch (LoginOrder) {
 
-            case 1: {
-                loginView();
-            }
+            case 1 -> loginView();
 
-            case 2: {
-                signupView();
-            }
+            case 2 -> signupView();
         }
     }
 
@@ -51,21 +48,15 @@ public interface LoginPageView {
         String userName, password = null, email=null, phone=null;
 
         while (true) {
-
-            boolean userNameCheck = true;
             userName = scanner.nextLine();
 
-            for (Buyer customer : ModelData.getCustomers()) {
+            if (BuyerController.checkUserName(userName)) {
 
-                if (customer.getUserName().equals(userName)) {
-                    System.out.println("THIS USER NAME IS  ALREADY EXIST , TRY AGAIN: ");
-                    userNameCheck = false;
-                    break;
-                }
-            }
-
-            if(userNameCheck)
+                BuyerController.setUserName(userName);
                 break;
+
+            } else
+                System.out.println("\nTHIS USER NAME IS ALREADY EXIST , TRY ANOTHER ONE: ");
         }
 
         //---------------------------------------------------------------------------------------------PASSWORD

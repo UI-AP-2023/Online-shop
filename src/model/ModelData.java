@@ -28,7 +28,7 @@ public abstract class ModelData {
 
     //-------------------------------------------------------
 
-    private static Buyer YOU ;
+    private static Buyer you = new Buyer("","","","");
 
     //------------------------------------------------------
 
@@ -68,14 +68,15 @@ public abstract class ModelData {
 
     //------------------------------------------------------------------------
 
-    public static Buyer getYOU() {
-        return YOU;
+    public static Buyer getYou() {
+        return you;
     }
 
-    public static void setYOU(Buyer YOU) {
-        ModelData.YOU = YOU;
+    public static void setYou(Buyer you) {
+        ModelData.you = you;
     }
 
     //----------------------------------------------------------
+
 
 }

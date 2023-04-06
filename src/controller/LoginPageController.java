@@ -24,7 +24,7 @@ public interface LoginPageController {
         // if  customer
         for (Buyer buyer : ModelData.getCustomers()) {
             if (Objects.equals(buyer.getUserName(), username) && Objects.equals(buyer.getPassword(), password)) {
-                ModelData.setYOU(buyer);
+                ModelData.setYou(buyer);
                 BuyerView.showBuyerOptions();
                 break;
             }
