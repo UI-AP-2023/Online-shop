@@ -1,6 +1,7 @@
 package controller;
 
 import model.ModelData;
+import model.requests.SignupRequest;
 import model.userAccount.Buyer;
 import view.AdminView.AdminView;
 import view.BuyerView.BuyerView;
@@ -75,12 +76,21 @@ public interface LoginPageController {
 
     //====================================================================================================
 
-    static void signupController(String username, String password, String phone , String email) {
+    static void signupController(Buyer requester) {
 
-        Buyer temp = new Buyer(username, password, phone, email);
-
-        ModelData.addCustomer(temp);
-
-
+        ModelData.addCustomer(requester);
     }
+
+    //==================================================================================================
+
+    static void setSignupRequest(SignupRequest requester){
+        ModelData.getSignupRequests().add(requester);
+    }
+
+    //==================================================================================================
+
+    //==================================================================================================
+
+
+
 }

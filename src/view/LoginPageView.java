@@ -3,6 +3,7 @@ package view;
 import controller.BuyerController;
 import controller.LoginPageController;
 import model.ModelData;
+import model.requests.SignupRequest;
 import model.userAccount.Buyer;
 
 import java.util.Scanner;
@@ -105,9 +106,13 @@ public interface LoginPageView {
             }
         }
 
-        LoginPageController.signupController(userName, password, phone, email);
 
-        System.out.println("...YOU SIGNED UP SUCCESSFULLY...\n");
+        Buyer requester = new Buyer(userName, password, phone, email);
+        SignupRequest request = new SignupRequest(requester);
+
+        LoginPageController.setSignupRequest(request);
+
+        System.out.println("...YOUR SIGN UP REQUEST SENT FOR ADMIN...\n");
 
         showLoginPage();
     }

@@ -32,30 +32,43 @@ public interface BuyerView {
     //=================================================================================
 
     static void showBuyerMainMenu() {
-        print("\n1.SHOW MY PROFILE");
-        print("2.EDIT MY PROFILE");
-        print("3.INCREMENT BALANCE(request to admin)");
-        print("4.SHOW MY BUYING CART");
-        print("5.SHOW MY INVOICES\n");
 
-        Scanner scanner = new Scanner(System.in);
-        int order = scanner.nextInt();
-        scanner.nextLine();
+        int order=10;
 
-        switch (order) {
+        while (order!=6) {
+            print("\n1.SHOW MY PROFILE");
+            print("2.EDIT MY PROFILE");
+            print("3.INCREMENT BALANCE(request to admin)");
+            print("4.SHOW MY BUYING CART");
+            print("5.SHOW MY INVOICES");
+            print("6.BACK\n");
 
-            case 1 -> showMyProfile();
+            Scanner scanner = new Scanner(System.in);
+            order = scanner.nextInt();
+            scanner.nextLine();
 
-            case 2 -> editMyProfile();
+            switch (order) {
 
-            case 3 -> incrementBalance();
+                case 1 -> showMyProfile();
 
-            case 4 -> {}
+                case 2 -> editMyProfile();
 
-            case 5 -> {}
+                case 3 -> incrementBalance();
 
+                case 4 -> showMyBuyingCart();
+
+                case 5 -> {
+                }
+
+            }
         }
+    }
 
+
+    //-----------------------------------------------------------------------
+
+    static void showMyBuyingCart() {
+        print("YOUR CART ITEMS: "+BuyerController.getMyBuyingCart());
     }
 
     //-----------------------------------------------------------------------

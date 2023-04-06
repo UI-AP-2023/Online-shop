@@ -1,6 +1,7 @@
 package controller;
 
 import model.ModelData;
+import model.product.Product;
 import model.requests.IncrementBalanceRequest;
 import model.userAccount.Buyer;
 
@@ -56,6 +57,21 @@ public interface BuyerController {
     static void setIncrementBalanceRequest(double amount) {
 
         IncrementBalanceRequest balanceRequest = new IncrementBalanceRequest(ModelData.getYou(), amount);
+    }
+
+
+    //-----------------------------------------------------------------------
+
+
+    static String getMyBuyingCart() {
+
+        StringBuilder temp= new StringBuilder();
+
+        for (Product product : ModelData.getYou().getProductsCart()){
+            temp.append(product.toString()).append("\n");
+        }
+
+        return temp.toString();
     }
 
     //---------------------------------------------------------------------------

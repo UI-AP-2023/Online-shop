@@ -7,9 +7,9 @@ import java.util.ArrayList;
 
 public class Buyer extends Account{
 
-    ArrayList<Product> boughtProducts = new ArrayList<>();
-    ArrayList<Product> ProductsCart = new ArrayList<>();
-    ArrayList<Invoice> invoices = new ArrayList<>();
+    private final ArrayList<Invoice> Invoices = new ArrayList<>();
+    private final ArrayList<Product> ProductsCart = new ArrayList<>();
+    private final ArrayList<Invoice> invoices = new ArrayList<>();
 
     private double balance;
 
@@ -31,13 +31,29 @@ public class Buyer extends Account{
 
     //--------------------------------------------------
 
-    public void addBoughtProduct(Product product) {
-        boughtProducts.add(product);
+    public void addBoughtProduct(Invoice invoice) {
+        Invoices.add(invoice);
     }
 
     //--------------------------------------------------
     @Override
     public String toString(){
-        return "USER NAME: "+userName + ", EMAIL: " + email;
+        return "USER NAME: (" + userName + ") , PASSWORD: (" + password + "), EMAIL: (" + email + ") , PHONE NUMBER: " + phoneNumber;
     }
+
+    //--------------------------------------------------
+
+
+    public ArrayList<Product> getProductsCart() {
+        return ProductsCart;
+    }
+
+    //--------------------------------------------------
+
+
+    public ArrayList<Invoice> getInvoices() {
+        return invoices;
+    }
+
+    //--------------------------------------------
 }
