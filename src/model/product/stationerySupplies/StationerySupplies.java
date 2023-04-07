@@ -1,8 +1,6 @@
 package model.product.stationerySupplies;
 
 import model.product.Product;
-import model.product.ProductCategory;
-
 public abstract class StationerySupplies extends Product {
 
     private String country;
@@ -13,10 +11,6 @@ public abstract class StationerySupplies extends Product {
         super(name,nmbrAvailable,price);
 
         this.country = country;
-    }
-
-    static void SetCategory(){
-        category = ProductCategory.STATIONERY_SUPPLIES;
     }
 
     public String getCountry() {

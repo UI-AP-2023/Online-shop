@@ -1,6 +1,7 @@
 package model.product.stationerySupplies;
 
 import model.ModelData;
+import model.product.ProductCategory;
 
 public class Pencil extends StationerySupplies {
 
@@ -17,6 +18,7 @@ public class Pencil extends StationerySupplies {
 
         ModelData.getProducts().add(this);
 
+        this.category= ProductCategory.PENCIL;
 
     }
 

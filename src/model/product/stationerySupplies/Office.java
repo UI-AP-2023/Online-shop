@@ -1,6 +1,7 @@
 package model.product.stationerySupplies;
 
 import model.ModelData;
+import model.product.ProductCategory;
 
 public class Office extends StationerySupplies {
 
@@ -18,6 +19,8 @@ public class Office extends StationerySupplies {
         this.ID = new StringBuilder(this.getClass().getName()+"-"+name+"-"+numberOfSheets+"Sheets-"+paperType+"-"+country);
 
         ModelData.getProducts().add(this);
+
+        this.category= ProductCategory.OFFICE;
 
     }
 

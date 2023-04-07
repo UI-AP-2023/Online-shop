@@ -1,6 +1,7 @@
 package model.product.digital_Product.storageDevice;
 
 import model.ModelData;
+import model.product.ProductCategory;
 import model.product.digital_Product.DigitalProduct;
 
 //================================================================
@@ -46,6 +47,8 @@ class FlashMemory extends StorageDevice{
 
         ModelData.getProducts().add(this);
 
+        this.category=ProductCategory.FLASH;
+
     }
 
 
@@ -78,9 +81,9 @@ class SSD extends StorageDevice {
 
         ModelData.getProducts().add(this);
 
+        this.category=ProductCategory.SSD;
+
     }
-
-
 
     public double getReadingSpeed() {
         return readingSpeed;

@@ -11,7 +11,7 @@ public abstract class Product {
     protected double price;
     protected int numberOfAvailable;
     protected ArrayList<Integer> buyersScores = new ArrayList<>();
-    protected static ProductCategory category;
+    protected ProductCategory category;
     private static int staticNumber=1;
     protected int number;
     public ArrayList<Comment> comments = new ArrayList<>();
@@ -50,7 +50,7 @@ public abstract class Product {
     //--------------------------------------------------------------------------------------
 
     public ArrayList<Integer> getBuyersScores() {
-        return new ArrayList<>(buyersScores);
+        return buyersScores;
     }
 
     //---------------------------------------------------
@@ -65,4 +65,7 @@ public abstract class Product {
         return this.price;
     }
 
+    public ProductCategory getCategory() {
+        return this.category;
+    }
 }

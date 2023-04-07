@@ -1,3 +1,3 @@
 package model.product;
 
-public enum ProductCategory {DIGITAL_PRODUCT, EDIBLE, STATIONERY_SUPPLIES, VEHICLE}
+public enum ProductCategory {PC, FLASH, SSD, EDIBLE, OFFICE, PEN, PENCIL, BIKE, CAR}

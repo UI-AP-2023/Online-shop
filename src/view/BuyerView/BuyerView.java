@@ -2,8 +2,10 @@ package view.BuyerView;
 
 import controller.BuyerController;
 import controller.LoginPageController;
+import model.ModelData;
 import model.invoice_comment_score.Invoice;
 import model.product.Product;
+import model.product.ProductCategory;
 import view.LoginPageView;
 
 import java.util.Scanner;
@@ -47,13 +49,156 @@ public interface BuyerView {
 
             case 1 -> showAllProducts();
 
-            case 2 -> {
-            }
+            case 2 -> useFilters();
 
             case 3 -> showBuyerMainMenu();
         }
 
     }
+
+    //----------------------------------------------------------
+
+    static void useFilters() {
+
+        print("1.PC, 2.FLASH, 3.SSD, 4.EDIBLE, 5.OFFICE, 6.PEN, 7.PENCIL, 8.BIKE, 9.CAR: ");
+
+        Scanner scanner = new Scanner(System.in);
+        int filterNum = scanner.nextInt();
+
+        switch (filterNum) {
+
+            case 1: showPCs();
+
+            case 2: showFlashs();
+
+            case 3: showSSDs();
+
+            case 4: showEdibles();
+
+            case 5: showOffices();
+
+            case 6: showPens();
+
+            case 7: showPencils();
+
+            case 8: showBikes();
+
+            case 9: showCars();
+
+        }
+
+    }
+
+    //---------------------------------------------------------
+
+    static void showPCs() {
+
+        for (Product product : ModelData.getProducts()){
+            if (product.getCategory() == ProductCategory.PC) {
+
+                print(product);
+            }
+        }
+
+        enterProductsPageNumber();
+    }
+
+    static void showFlashs() {
+
+        for (Product product : ModelData.getProducts()){
+            if (product.getCategory() == ProductCategory.FLASH) {
+
+                print(product);
+            }
+        }
+
+        enterProductsPageNumber();
+    }
+
+    static void showSSDs() {
+
+        for (Product product : ModelData.getProducts()){
+            if (product.getCategory() == ProductCategory.SSD) {
+
+                print(product);
+            }
+        }
+
+        enterProductsPageNumber();
+    }
+
+    static void showEdibles() {
+
+        for (Product product : ModelData.getProducts()){
+            if (product.getCategory() == ProductCategory.EDIBLE) {
+
+                print(product);
+            }
+        }
+
+        enterProductsPageNumber();
+    }
+
+    static void showPencils() {
+
+        for (Product product : ModelData.getProducts()){
+            if (product.getCategory() == ProductCategory.PENCIL) {
+
+                print(product);
+            }
+        }
+
+        enterProductsPageNumber();
+    }
+
+    static void showPens() {
+
+        for (Product product : ModelData.getProducts()){
+            if (product.getCategory() == ProductCategory.PEN) {
+
+                print(product);
+            }
+        }
+
+        enterProductsPageNumber();
+    }
+
+    static void showOffices() {
+
+        for (Product product : ModelData.getProducts()){
+            if (product.getCategory() == ProductCategory.OFFICE) {
+
+                print(product);
+            }
+        }
+
+        enterProductsPageNumber();
+    }
+
+    static void showBikes() {
+
+        for (Product product : ModelData.getProducts()){
+            if (product.getCategory() == ProductCategory.BIKE) {
+
+                print(product);
+            }
+        }
+
+        enterProductsPageNumber();
+    }
+
+    static void showCars() {
+
+        for (Product product : ModelData.getProducts()){
+            if (product.getCategory() == ProductCategory.CAR) {
+
+                print(product);
+            }
+        }
+
+        enterProductsPageNumber();
+    }
+
 
     //--------------------------------------------------
 
@@ -117,10 +262,40 @@ public interface BuyerView {
 
             case 2 -> addComments(product);
 
-            case 3 ->{}
+            case 3 -> rateThisProduct(product);
 
-            case 4-> showAllProducts();
+            case 4 -> showAllProducts();
         }
+    }
+
+    //-------------------------------------------------------
+
+    static void rateThisProduct(Product product) {
+
+        if (BuyerController.checkBoughtThisProduct(product)) {
+
+            int score = 100;
+            Scanner scanner = new Scanner(System.in);
+
+            print("\nENTER YOUR SCORE:");
+
+            while (!BuyerController.checkScore(score)) {
+
+                score = scanner.nextInt();
+                if (!BuyerController.checkScore(score)) {
+                    BuyerController.addScore(product, score);
+
+                    print("YOUR SCORE ADDED\n");
+
+                    break;
+                }
+
+                print("PLEASE ENTER A NUMBER BETWEEN 1 AND 5: ");
+            }
+
+            showProduct(product.getNumber());
+        }
+
     }
 
     //------------------------------------------------
@@ -147,13 +322,13 @@ public interface BuyerView {
         print("\nHow many :");
         int numberOfProductsYouWant = scanner.nextInt();
 
-        if(BuyerController.checkBalanceForBuying(product,numberOfProductsYouWant)){
+        if (BuyerController.checkBalanceForBuying(product, numberOfProductsYouWant)) {
 
-            BuyerController.AddProductToCart(product,numberOfProductsYouWant);
+            BuyerController.AddProductToCart(product, numberOfProductsYouWant);
 
             print("ADDED TO THE CART!\n");
 
-        }else {
+        } else {
 
             print("YOU HAVE NOT ENOUGH BALANCE\nENTER ANY NUMBER TO CONTINUE...");
         }
@@ -212,6 +387,34 @@ public interface BuyerView {
 
     static void showMyBuyingCart() {
         print("YOUR CART ITEMS: " + BuyerController.getMyBuyingCart());
+        print("\n\n1.Buy\n2.Remove a product\n3.Back");
+
+        Scanner scanner = new Scanner(System.in);
+        int order = scanner.nextInt();
+
+        switch (order) {
+            case 1 -> BuyerController.buyThisCart();
+
+            case 2 -> removeThisFromCart();
+
+            case 3 -> showBuyerProfileOptions();
+        }
+    }
+
+    static void removeThisFromCart() {
+
+        print("ENTER THE PRODUCT NUMBER THAT YOU WANT TO REMOVE:");
+
+        Scanner scanner = new Scanner(System.in);
+        int number = scanner.nextInt();
+
+        if (BuyerController.removeThisFromCart(number)) {
+            print("Removed!\n");
+        } else {
+            print("The product with this number is not in your cart");
+        }
+
+        showMyBuyingCart();
     }
 
     //-----------------------------------------------------------------------
@@ -354,9 +557,18 @@ public interface BuyerView {
 
     //--------------------------------------------------------------------------------------
 
+    static void printNotEnoughBalance() {
+        print("\nYOUR BALANCE IS NOT ENOUGH!\n");
+
+        showMyBuyingCart();
+
+    }
+
 
     //[][][][][][][][][][][][][][][][]][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][]][][][]
     static void print(Object obj) {
         System.out.println(obj);
     }
+
+
 }

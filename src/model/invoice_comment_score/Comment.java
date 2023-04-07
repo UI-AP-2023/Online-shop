@@ -7,7 +7,7 @@ public class Comment {
     private final Buyer commenter;
     private final String comment;
     private final String productID;
-    private boolean Verified;
+    private boolean verified;
     private final boolean boughtByCommenter;
 
     //====================================================================
@@ -18,6 +18,7 @@ public class Comment {
         this.comment = comment;
         this.productID = productID;
         this.boughtByCommenter = boughtByCommenter;
+        this.verified=false;
     }
 
     //---------------------------------------------------------------
@@ -33,8 +34,8 @@ public class Comment {
 
     //----------------------------------------------------------------
 
-    public void setStatus(Boolean status) {
-        this.Verified = status;
+    public void verifyComment(Boolean status) {
+        this.verified = status;
     }
 
     //----------------------------------------------------------------
@@ -46,7 +47,7 @@ public class Comment {
     //--------------------------------------------------------------
 
     public boolean getStatus() {
-        return Verified;
+        return verified;
     }
 }
 

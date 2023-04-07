@@ -1,6 +1,7 @@
 package model.product.stationerySupplies;
 
 import model.ModelData;
+import model.product.ProductCategory;
 
 public class Pen extends StationerySupplies {
 
@@ -16,6 +17,8 @@ public class Pen extends StationerySupplies {
         this.ID=new StringBuilder(this.getClass().getName()+"-"+name+"-"+color+"-"+country);
 
         ModelData.getProducts().add(this);
+
+        this.category= ProductCategory.PEN;
 
     }
 

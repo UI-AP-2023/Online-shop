@@ -15,10 +15,6 @@ public abstract class Vehicle extends Product {
         this.companyName = companyName;
     }
 
-    static void SetCategory(){
-        category = ProductCategory.VEHICLE;
-    }
-
     public String getCompanyName() {
         return companyName;
     }

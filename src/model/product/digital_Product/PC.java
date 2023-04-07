@@ -1,6 +1,7 @@
 package model.product.digital_Product;
 
 import model.ModelData;
+import model.product.ProductCategory;
 
 public class PC extends DigitalProduct {
 
@@ -20,6 +21,7 @@ public class PC extends DigitalProduct {
 
         ModelData.getProducts().add(this);
 
+        this.category=ProductCategory.PC;
     }
 
     public int getRamMemoryCapacity() {

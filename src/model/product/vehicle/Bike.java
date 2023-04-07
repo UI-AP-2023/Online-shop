@@ -1,6 +1,7 @@
 package model.product.vehicle;
 
 import model.ModelData;
+import model.product.ProductCategory;
 
 public class Bike extends Vehicle{
 
@@ -15,6 +16,8 @@ public class Bike extends Vehicle{
         this.ID= new StringBuilder(companyName+"-"+name+"-"+type.toString());
 
         ModelData.getProducts().add(this);
+
+        this.category= ProductCategory.BIKE;
 
     }
 

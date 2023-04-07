@@ -15,10 +15,6 @@ public abstract class DigitalProduct extends Product {
         this.size = size;
     }
 
-    static void SetCategory(){
-        category = ProductCategory.DIGITAL_PRODUCT;
-    }
-
     public double getWeight() {
         return weight;
     }

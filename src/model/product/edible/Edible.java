@@ -24,10 +24,8 @@ public class Edible extends Product {
 
         ModelData.getProducts().add(this);
 
-    }
+        this.category=ProductCategory.EDIBLE;
 
-    static void SetCategory(){
-        category = ProductCategory.EDIBLE;
     }
 
     public String getProductDate() {

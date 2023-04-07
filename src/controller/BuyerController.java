@@ -6,6 +6,7 @@ import model.invoice_comment_score.Invoice;
 import model.product.Product;
 import model.requests.IncrementBalanceRequest;
 import model.userAccount.Buyer;
+import view.BuyerView.BuyerView;
 
 import java.util.ArrayList;
 import java.util.Objects;
@@ -144,4 +145,63 @@ public interface BuyerController {
         }
         return false;
     }
+
+    //--------------------------------------------------------------------
+
+    static boolean checkScore(int score) {
+        return score <=5 && score >= 1;
+    }
+
+    //----------------------------------------------------------------------------
+
+    static void addScore(Product product,int score) {
+
+        product.getBuyersScores().add(score);
+    }
+
+    //---------------------------------------------------------------------------
+    static void buyThisCart() {
+
+        double amount = calculateAmount();
+
+        double before =ModelData.getYou().getBalance();
+
+        if(before>= amount) {
+            double after = before - amount;
+            ModelData.getYou().setBalance(after);
+        }
+        else
+            BuyerView.printNotEnoughBalance();
+    }
+
+    //----------------------------------------------------
+
+    static double calculateAmount() {
+
+        double sum = 0;
+
+        for (Product product: ModelData.getYou().getProductsCart()){
+            sum+= product.getPrice();
+        }
+
+        return sum;
+    }
+//--------------------------------------------------------------------------
+    static boolean removeThisFromCart(int number) {
+
+
+        for (Product product: ModelData.getYou().getProductsCart()) {
+            if(product.getNumber() == number){
+                ModelData.getYou().getProductsCart().remove(product);
+                return true;
+            }
+        }
+        return false;
+    }
+
+    //-----------------------------------------------------------------------
+
+
+
 }
+
