@@ -30,7 +30,7 @@ public interface LoginPageController {
                 // to know who is using the program
                 ModelData.setYou(buyer);
                 isCustomer = true;
-                BuyerView.showBuyerOptions();
+                BuyerView.showBuyerMainMenu();
                 //------------------------------------
                 LoginPageView.showLoginPage();
             }

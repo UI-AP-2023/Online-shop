@@ -25,8 +25,6 @@ public interface AdminView {
 
             case "BALANCE" :{}
 
-            case "COMMENT" :{}
-
             case "EXIT" : {}
 
             case "HELP" :{
@@ -36,7 +34,6 @@ public interface AdminView {
                 System.out.println("REMOVE: remove a product from the shop\n");
                 System.out.println("SIGNUP: show sign up requests\n");
                 System.out.println("BALANCE: show balance increase requests\n");
-                System.out.println("COMMENT: show comment requests\n");
                 System.out.println("Exit: for exit :/\n");
             }
 

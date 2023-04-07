@@ -6,7 +6,7 @@ import java.util.ArrayList;
 
 public class Invoice {
 
-    ArrayList<Product> Orders ;
+    private final ArrayList<Product> orders;
 
     private final String date;
     private final double paidAmount;
@@ -19,7 +19,7 @@ public class Invoice {
 
         this.date = date;
         this.paidAmount = paidAmount;
-        this.Orders = Orders;
+        this.orders = Orders;
 
         invoiceID = new StringBuilder(staticID + staticID / 2 + "." + paidAmount);
         staticID++;
@@ -37,10 +37,17 @@ public class Invoice {
     public String toString() {
 
         StringBuilder temp = new StringBuilder();
-        for (Product order : Orders) {
+        for (Product order : orders) {
             temp.append(order.toString()).append("\n");
         }
 
         return "INVOICE ID: " + invoiceID + "\n" + temp + "AMOUNT: " + paidAmount + "$"+"\n\n";
+    }
+
+    //------------------------------------------------------------------------
+
+    public ArrayList<Product>getBoughtOrders() {
+
+        return new ArrayList<>(orders);
     }
 }

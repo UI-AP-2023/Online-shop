@@ -7,18 +7,16 @@ public class Comment {
     private final Buyer commenter;
     private final String comment;
     private final String productID;
-    private CommentStatus status;
+    private boolean Verified;
     private final boolean boughtByCommenter;
 
     //====================================================================
 
-    Comment(Buyer commenter, String comment,String productID,
-            CommentStatus status, boolean boughtByCommenter){
+    public Comment(Buyer commenter, String comment, String productID, boolean boughtByCommenter){
 
         this.commenter = commenter;
         this.comment = comment;
         this.productID = productID;
-        this.status = status;
         this.boughtByCommenter = boughtByCommenter;
     }
 
@@ -35,14 +33,20 @@ public class Comment {
 
     //----------------------------------------------------------------
 
-    public void setStatus(CommentStatus status) {
-        this.status = status;
+    public void setStatus(Boolean status) {
+        this.Verified = status;
     }
 
     //----------------------------------------------------------------
 
     public String getProductID() {
         return productID;
+    }
+
+    //--------------------------------------------------------------
+
+    public boolean getStatus() {
+        return Verified;
     }
 }
 

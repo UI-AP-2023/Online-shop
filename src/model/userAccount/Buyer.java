@@ -7,7 +7,6 @@ import java.util.ArrayList;
 
 public class Buyer extends Account{
 
-    private final ArrayList<Invoice> Invoices = new ArrayList<>();
     private final ArrayList<Product> ProductsCart = new ArrayList<>();
     private final ArrayList<Invoice> invoices = new ArrayList<>();
 
@@ -31,8 +30,8 @@ public class Buyer extends Account{
 
     //--------------------------------------------------
 
-    public void addBoughtProduct(Invoice invoice) {
-        Invoices.add(invoice);
+    public void addInvoice(Invoice invoice) {
+        invoices.add(invoice);
     }
 
     //--------------------------------------------------
@@ -43,17 +42,22 @@ public class Buyer extends Account{
 
     //--------------------------------------------------
 
-
     public ArrayList<Product> getProductsCart() {
         return ProductsCart;
     }
 
     //--------------------------------------------------
 
-
     public ArrayList<Invoice> getInvoices() {
         return invoices;
     }
 
+    //------------------------------------------------------
+
+    public void addProduct(Product product) {
+        ProductsCart.add(product);
+    }
+
     //--------------------------------------------
+
 }

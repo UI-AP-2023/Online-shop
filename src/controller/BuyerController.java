@@ -1,13 +1,13 @@
 package controller;
 
 import model.ModelData;
+import model.invoice_comment_score.Comment;
 import model.invoice_comment_score.Invoice;
 import model.product.Product;
 import model.requests.IncrementBalanceRequest;
 import model.userAccount.Buyer;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Objects;
 
 public interface BuyerController {
@@ -16,7 +16,7 @@ public interface BuyerController {
     static String getMyProfile() {
         return "User name: " + ModelData.getYou().getUserName() + "\nPassword: " + ModelData.getYou().getPassword()
                 + "\nEmail: " + ModelData.getYou().getEmail() + "\nPhone number: " + ModelData.getYou().getPhoneNumber()
-                + "\nBalance: "+ ModelData.getYou().getBalance();
+                + "\nBalance: " + ModelData.getYou().getBalance();
     }
     //---------------------------------------------------------------------
 
@@ -25,7 +25,7 @@ public interface BuyerController {
         for (Buyer customer : ModelData.getCustomers()) {
 
             if (Objects.equals(customer.getUserName(), userName)) {
-            return false;
+                return false;
             }
         }
 
@@ -35,7 +35,7 @@ public interface BuyerController {
 
     //------------------------------------------------------------------------
 
-    static void setUserName(String userName){
+    static void setUserName(String userName) {
 
         ModelData.getYou().setUserName(userName);
     }
@@ -68,9 +68,9 @@ public interface BuyerController {
 
     static String getMyBuyingCart() {
 
-        StringBuilder temp= new StringBuilder();
+        StringBuilder temp = new StringBuilder();
 
-        for (Product product : ModelData.getYou().getProductsCart()){
+        for (Product product : ModelData.getYou().getProductsCart()) {
             temp.append(product.toString()).append("\n");
         }
 
@@ -85,4 +85,63 @@ public interface BuyerController {
     }
 
     //-----------------------------------------------------------------------
+
+    static ArrayList<Product> getProducts() {
+        return ModelData.getProducts();
+    }
+
+    //--------------------------------------------------
+
+    static Product getThisProduct(int numberOfProduct) {
+
+        for (Product product : ModelData.getProducts()) {
+            if (product.getNumber() == numberOfProduct) {
+                return product;
+            }
+        }
+        return null;
+    }
+
+    static boolean checkBalanceForBuying(Product product, int numberOfProductsYouWant) {
+
+        return ModelData.getYou().getBalance() >= numberOfProductsYouWant * product.getPrice();
+
+    }
+
+    static void AddProductToCart(Product product, int numberOfProductsYouWant) {
+
+        for (int i = 0; i < numberOfProductsYouWant; i++) {
+
+            ModelData.getYou().addProduct(product);
+        }
+    }
+
+//--------------------------------------------------------------------------------
+
+    static void addComment(String commentText, Product product) {
+
+        Comment comment;
+        if(BuyerController.checkBoughtThisProduct(product)) {
+             comment = new Comment(ModelData.getYou(), commentText, product.getID(), true);
+        }else {
+            comment = new Comment(ModelData.getYou(), commentText, product.getID(), false);
+        }
+
+        product.AddComment(comment);
+    }
+
+    //---------------------------------------------------------------------------------
+
+    static boolean checkBoughtThisProduct(Product product) {
+
+        for (Invoice invoice : ModelData.getYou().getInvoices()){
+            for (Product TempProduct : invoice.getBoughtOrders()){
+
+                if(Objects.equals(TempProduct, product)){
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
 }

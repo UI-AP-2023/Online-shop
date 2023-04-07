@@ -3,13 +3,16 @@ package view.BuyerView;
 import controller.BuyerController;
 import controller.LoginPageController;
 import model.invoice_comment_score.Invoice;
+import model.product.Product;
 import view.LoginPageView;
 
 import java.util.Scanner;
 
+import static view.LoginPageView.scanner;
+
 public interface BuyerView {
 
-    static void showBuyerOptions() {
+    static void showBuyerMainMenu() {
 
         Scanner scanner = new Scanner(System.in);
         print("\n1. PRODUCTS PAGE");
@@ -22,21 +25,149 @@ public interface BuyerView {
 
         switch (order) {
 
-            case 1->{}
+            case 1 -> showProductsPageOptions();
 
-            case 2 -> showBuyerMainMenu();
+            case 2 -> showBuyerProfileOptions();
 
             case 3 -> LoginPageView.showLoginPage();
         }
     }
 
+    //---------------------------------------------------------------------------------
+
+    static void showProductsPageOptions() {
+        print("\n1. SHOW ALL OF PRODUCTS IN THE SHOP");
+        print("2. USE FILTER FOR SHOWING PRODUCTS");
+        print("3. RETURN TO PREVIOUS PAGE\n");
+
+        Scanner scanner = new Scanner(System.in);
+        int order = scanner.nextInt();
+
+        switch (order) {
+
+            case 1 -> showAllProducts();
+
+            case 2 -> {
+            }
+
+            case 3 -> showBuyerMainMenu();
+        }
+
+    }
+
+    //--------------------------------------------------
+
+    static void showAllProducts() {
+
+        for (Product product : BuyerController.getProducts()) {
+            print(product.toString());
+        }
+
+        enterProductsPageNumber();
+    }
+
+    static void enterProductsPageNumber() {
+        print("\nENTER \"0\" FOR PREVIOUS PAGE OR ENTER YOUR PRODUCT NUMBER");
+
+        int numberOfProduct = 1000;
+
+        while (numberOfProduct != 0) {
+            Scanner scanner = new Scanner(System.in);
+            numberOfProduct = scanner.nextInt();
+
+            if (numberOfProduct > 0) {
+                showProduct(numberOfProduct);
+            } else if (numberOfProduct == 0) {
+                showProductsPageOptions();
+            } else {
+                print("THE NUMBER YOU ENTERED IS UNAFFECTED, ENTER ANOTHER ONE:\n");
+            }
+        }
+    }
+
+    static void showProduct(int numberOfProduct) {
+
+        if (BuyerController.getThisProduct(numberOfProduct) != null) {
+
+            print(BuyerController.getThisProduct(numberOfProduct));
+
+            BuyerView.showThisProductOptions(BuyerController.getThisProduct(numberOfProduct));
+
+        } else {
+            print("\nTHE NUMBER YOU ENTERED IS NOT FOR ANY PRODUCT,PLEASE ENTER ANOTHER ONE");
+            enterProductsPageNumber();
+        }
+    }
+
+    //-------------------------------------------
+    static void showThisProductOptions(Product product) {
+
+        print("1.Add to the cart");
+        print("2.Comments");
+        print("3.Rating");
+        print("4.Previous page");
+
+
+        Scanner scanner = new Scanner(System.in);
+        int order = scanner.nextInt();
+
+        switch (order) {
+
+            case 1 -> buyThisProduct(product);
+
+            case 2 -> addComments(product);
+
+            case 3 ->{}
+
+            case 4-> showAllProducts();
+        }
+    }
+
+    //------------------------------------------------
+
+    static void addComments(Product product) {
+
+        print("Write here:");
+
+        Scanner scanner = new Scanner(System.in);
+        String commentText = scanner.nextLine();
+
+        BuyerController.addComment(commentText, product);
+
+        print("COMMENT REQUEST SENT");
+
+        showProduct(product.getNumber());
+    }
+
+    //------------------------------------------
+    static void buyThisProduct(Product product) {
+
+        Scanner scanner = new Scanner(System.in);
+
+        print("\nHow many :");
+        int numberOfProductsYouWant = scanner.nextInt();
+
+        if(BuyerController.checkBalanceForBuying(product,numberOfProductsYouWant)){
+
+            BuyerController.AddProductToCart(product,numberOfProductsYouWant);
+
+            print("ADDED TO THE CART!\n");
+
+        }else {
+
+            print("YOU HAVE NOT ENOUGH BALANCE\nENTER ANY NUMBER TO CONTINUE...");
+        }
+
+        showProduct(product.getNumber());
+    }
+
     //=================================================================================
 
-    static void showBuyerMainMenu() {
+    static void showBuyerProfileOptions() {
 
-        int order=10;
+        int order = 10;
 
-        while (order!=6) {
+        while (order != 6) {
             print("\n1.SHOW MY PROFILE");
             print("2.EDIT MY PROFILE");
             print("3.INCREMENT BALANCE(request to admin)");
@@ -60,7 +191,7 @@ public interface BuyerView {
 
                 case 5 -> showMyInvoices();
             }
-            showBuyerOptions();
+            showBuyerMainMenu();
         }
     }
 
@@ -69,7 +200,7 @@ public interface BuyerView {
     static void showMyInvoices() {
 
         int index = 1;
-        for (Invoice invoice: BuyerController.getInvoice()){
+        for (Invoice invoice : BuyerController.getInvoice()) {
             System.out.println(index + invoice.toString());
             index++;
         }
@@ -80,7 +211,7 @@ public interface BuyerView {
     //-----------------------------------------------------------------------
 
     static void showMyBuyingCart() {
-        print("YOUR CART ITEMS: "+BuyerController.getMyBuyingCart());
+        print("YOUR CART ITEMS: " + BuyerController.getMyBuyingCart());
     }
 
     //-----------------------------------------------------------------------
@@ -145,8 +276,7 @@ public interface BuyerView {
                 print("\nYOUR LINKED PHONE NUMBER CHANGED SUCCESSFULLY\n");
                 break;
 
-            } else
-                print("\nTHIS PHONE NUMBER IS NOT VALID , TRY ANOTHER ONE: ");
+            } else print("\nTHIS PHONE NUMBER IS NOT VALID , TRY ANOTHER ONE: ");
         }
 
     }
@@ -170,8 +300,7 @@ public interface BuyerView {
                 print("\nYOUR EMAIL CHANGED SUCCESSFULLY\n");
                 break;
 
-            } else
-                print("\nTHIS EMAIL IS NOT VALID , TRY ANOTHER ONE: ");
+            } else print("\nTHIS EMAIL IS NOT VALID , TRY ANOTHER ONE: ");
         }
 
 
@@ -195,8 +324,7 @@ public interface BuyerView {
                 print("\nYOUR USER NAME CHANGED SUCCESSFULLY\n");
                 break;
 
-            } else
-                print("\nTHIS USER NAME IS ALREADY EXIST , TRY ANOTHER ONE: ");
+            } else print("\nTHIS USER NAME IS ALREADY EXIST , TRY ANOTHER ONE: ");
         }
 
     }
@@ -219,36 +347,12 @@ public interface BuyerView {
                 print("\nYOUR PASSWORD CHANGED SUCCESSFULLY\n");
                 break;
 
-            } else
-                print("\nTHIS PASSWORD IS NOT VALID , TRY ANOTHER ONE: ");
+            } else print("\nTHIS PASSWORD IS NOT VALID , TRY ANOTHER ONE: ");
         }
 
     }
 
     //--------------------------------------------------------------------------------------
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
     //[][][][][][][][][][][][][][][][]][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][]][][][]

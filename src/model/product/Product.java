@@ -38,7 +38,7 @@ public abstract class Product {
 
     @Override
     public String toString() {
-        return number + " . " + name + "\n" + price + "$";
+        return number + " . " + name + "\n" + price + "$" + "\nAVAILABLE: "+ numberOfAvailable;
     }
 
     //-------------------------------------------------------------------------------------
@@ -51,6 +51,18 @@ public abstract class Product {
 
     public ArrayList<Integer> getBuyersScores() {
         return new ArrayList<>(buyersScores);
+    }
+
+    //---------------------------------------------------
+
+    public int getNumber(){
+        return this.number;
+    }
+
+    //---------------------------------------------
+
+    public double getPrice(){
+        return this.price;
     }
 
 }
