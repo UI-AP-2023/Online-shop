@@ -2,6 +2,7 @@ package view.BuyerView;
 
 import controller.BuyerController;
 import controller.LoginPageController;
+import model.invoice_comment_score.Invoice;
 import view.LoginPageView;
 
 import java.util.Scanner;
@@ -41,7 +42,7 @@ public interface BuyerView {
             print("3.INCREMENT BALANCE(request to admin)");
             print("4.SHOW MY BUYING CART");
             print("5.SHOW MY INVOICES");
-            print("6.BACK\n");
+            print("else.BACK to previous page\n");
 
             Scanner scanner = new Scanner(System.in);
             order = scanner.nextInt();
@@ -57,11 +58,22 @@ public interface BuyerView {
 
                 case 4 -> showMyBuyingCart();
 
-                case 5 -> {
-                }
-
+                case 5 -> showMyInvoices();
             }
+            showBuyerOptions();
         }
+    }
+
+    //-------------------------------------------------------------------------
+
+    static void showMyInvoices() {
+
+        int index = 1;
+        for (Invoice invoice: BuyerController.getInvoice()){
+            System.out.println(index + invoice.toString());
+            index++;
+        }
+
     }
 
 
@@ -88,6 +100,7 @@ public interface BuyerView {
     //------------------------------------------------------------------------------------
 
     static void showMyProfile() {
+
         print(BuyerController.getMyProfile());
     }
 

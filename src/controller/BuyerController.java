@@ -1,10 +1,13 @@
 package controller;
 
 import model.ModelData;
+import model.invoice_comment_score.Invoice;
 import model.product.Product;
 import model.requests.IncrementBalanceRequest;
 import model.userAccount.Buyer;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Objects;
 
 public interface BuyerController {
@@ -76,4 +79,10 @@ public interface BuyerController {
 
     //---------------------------------------------------------------------------
 
+
+    static ArrayList<Invoice> getInvoice() {
+        return ModelData.getYou().getInvoices();
+    }
+
+    //-----------------------------------------------------------------------
 }
