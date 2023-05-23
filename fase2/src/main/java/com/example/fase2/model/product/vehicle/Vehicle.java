@@ -1,0 +1,25 @@
+package com.example.fase2.model.product.vehicle;
+
+
+import com.example.fase2.model.product.Product;
+
+public abstract class Vehicle extends Product {
+
+    private String companyName;
+
+    //0000000000000000000000000000000000000000000000000===CONSTRUCTOR
+
+    Vehicle(String companyName, String name, int nmbrAvailable,double price){
+
+        super(name, nmbrAvailable,price);
+        this.companyName = companyName;
+    }
+
+    public String getCompanyName() {
+        return companyName;
+    }
+
+    public void setCompanyName(String companyName) {
+        this.companyName = companyName;
+    }
+}
