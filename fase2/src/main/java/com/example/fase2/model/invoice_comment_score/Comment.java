@@ -1,6 +1,5 @@
 package com.example.fase2.model.invoice_comment_score;
 
-
 import com.example.fase2.model.userAccount.Buyer;
 
 public class Comment {

@@ -7,16 +7,16 @@ import com.example.fase2.model.product.ProductCategory;
 
 public class Edible extends Product {
 
-    private String productDate, ExpirationDate;
+    private String produceDate, ExpirationDate;
     private static int staticID=1;
 
     //0000000000000000000000000000000000000000000000000===constructor
 
-    public Edible(String productDate, String ExpirationDate, String name, int numberOfAvailable, double price){
+    public Edible(String produceDate, String ExpirationDate, String name, int numberOfAvailable, double price){
 
         super(name, numberOfAvailable,price);
 
-        this.productDate = productDate;
+        this.produceDate = produceDate;
         this.ExpirationDate = ExpirationDate;
 
         //set ID for every object with its properties
@@ -29,12 +29,12 @@ public class Edible extends Product {
 
     }
 
-    public String getProductDate() {
-        return productDate;
+    public String getProduceDate() {
+        return produceDate;
     }
 
-    public void setProductDate(String productDate) {
-        this.productDate = productDate;
+    public void setProduceDate(String produceDate) {
+        this.produceDate = produceDate;
     }
 
     public String getExpirationDate() {

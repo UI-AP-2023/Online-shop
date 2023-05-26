@@ -33,4 +33,15 @@ public class FlashMemory extends StorageDevice {
     public int getUSB_Version() {
         return USB_Version;
     }
+
+    @Override
+    public String toString() {
+        return "FlashMemory{" +
+                "USB_Version=" + USB_Version +
+                ", ID=" + ID +
+                ", name='" + name + '\'' +
+                ", price=" + price +
+                ", numberOfAvailable=" + numberOfAvailable +
+                '}';
+    }
 }

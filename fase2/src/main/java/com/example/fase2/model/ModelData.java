@@ -38,7 +38,7 @@ public abstract class ModelData {
 
     //-------------------------------------------------------
 
-    private static Buyer you = new Buyer("","","","");
+    private static Buyer you = null;
 
     //------------------------------------------------------
 

@@ -1,8 +1,11 @@
 package com.example.fase2.view.AdminView;
 
 import com.example.fase2.controller.AdminController;
+import com.example.fase2.model.InvalidID;
+import com.example.fase2.model.product.Product;
 import com.example.fase2.model.product.stationerySupplies.PencilType;
 import com.example.fase2.model.product.vehicle.BikeType;
+import com.example.fase2.view.LoginPageView;
 
 import java.util.Scanner;
 
@@ -26,20 +29,12 @@ public interface AdminView {
 
                 case "ADD" -> addProduct();
 
-                case "EDIT" -> { editProduct(); }
-
+                case "EDIT" -> editProduct();
 
                 case "REMOVE" -> {
                 }
 
-                case "SIGNUP" -> {
-                }
-
-                case "BALANCE" -> {
-                }
-
-                case "EXIT" -> {
-                }
+                case "EXIT" -> LoginPageView.showLoginPage();
 
                 case "HELP" -> {
 
@@ -59,9 +54,18 @@ public interface AdminView {
     //--------------------------------------------------------------------------------------
 
     static void editProduct() {
+
         Scanner scanner = new Scanner(System.in);
 
         String productID = scanner.next();
+
+        try {
+
+            AdminController.editProductController(productID);
+        }catch (InvalidID e){
+
+            System.out.println("this product is not found! ");
+        }
     }
 
 
@@ -91,13 +95,14 @@ public interface AdminView {
 
             case "PENCIL": addPencil();
 
-            case "EDIBLE": addEditable();
+            case "EDIBLE": addEdible();
 
             default: print(category+"not found\n\n");
         }
     }
+    //--------------------------------------------------------------------------------------
 
-    static void addEditable() {
+    static void addEdible() {
         Scanner scanner = new Scanner(System.in);
 
         String productDate= scanner.next();
@@ -108,6 +113,7 @@ public interface AdminView {
 
         AdminController.addEdible(productDate,ExpirationDate,name,numberOfAvailable,price);
     }
+    //--------------------------------------------------------------------------------------
 
     static void addPencil() {
         Scanner scanner = new Scanner(System.in);
@@ -120,6 +126,7 @@ public interface AdminView {
 
         AdminController.addPencil(country, PencilType.valueOf(type), name, nmbrAvailable, price);
     }
+    //--------------------------------------------------------------------------------------
 
     static void addPen() {
 
@@ -134,6 +141,7 @@ public interface AdminView {
         AdminController.addPen(country,color,name,nmbrAvailable,price);
 
     }
+    //--------------------------------------------------------------------------------------
 
 
     static void addOffice() {
@@ -148,6 +156,7 @@ public interface AdminView {
 
         AdminController.addOffice(country,numberOfSheets,paperType,name,nmbrAvailable,price);
     }
+    //--------------------------------------------------------------------------------------
 
     static void addBike() {
         Scanner scanner = new Scanner(System.in);
@@ -237,4 +246,135 @@ public interface AdminView {
         System.out.println(obj);
     }
 
+    static void editThisPCView(Product product) {
+
+        Scanner scanner = new Scanner(System.in);
+
+        int weight= scanner.nextInt();
+
+        int size= scanner.nextInt();
+
+        String name= scanner.next();
+
+        int numberOfAvailable=scanner.nextInt();
+
+        String CPU_Model=scanner.next();
+
+        int ramMemoryCapacity=scanner.nextInt();
+
+        double price=scanner.nextDouble();
+
+        AdminController.editThisPC(product , weight, size, name, numberOfAvailable, CPU_Model, ramMemoryCapacity, price);
+    }
+
+    static void editThisFLASHView(Product product) {
+
+
+        Scanner scanner = new Scanner(System.in);
+        int USB_Version = scanner.nextInt();
+        int capacity = scanner.nextInt();
+        int size = scanner.nextInt();
+        int weight=scanner.nextInt();
+        String name= scanner.next();
+        int numberOfAvailable=scanner.nextInt();
+        double price=scanner.nextDouble();
+
+        AdminController.editThisFLASH(product, USB_Version, capacity, size, weight, name, numberOfAvailable, price);
+    }
+
+    static void editThisSSDView(Product product) {
+
+        Scanner scanner = new Scanner(System.in);
+
+        int capacity= scanner.nextInt();
+        double readingSpeed= scanner.nextDouble();
+        double writingSpeed=scanner.nextDouble();
+        int weight= scanner.nextInt();
+        int size= scanner.nextInt();
+        String name= scanner.next();
+        int numberOfAvailable=scanner.nextInt();
+        double price=scanner.nextDouble();
+
+        AdminController.editThisSSD(product, capacity, readingSpeed, writingSpeed, weight, size, name, numberOfAvailable, price);
+    }
+
+    static void editThisCARView(Product product) {
+
+        Scanner scanner = new Scanner(System.in);
+        String companyName= scanner.next();
+        int EngineVolume=scanner.nextInt();
+        String automaticGearbox= scanner.next();
+        String name= scanner.next();
+        int nmbrAvailable= scanner.nextInt();
+        double price= scanner.nextDouble();
+
+        AdminController.editThisCAR(product,companyName,EngineVolume,Boolean.valueOf(automaticGearbox),name,nmbrAvailable,price);
+    }
+
+    static void editThisBikeView(Product product) {
+
+        Scanner scanner = new Scanner(System.in);
+
+        String companyName=scanner.next();
+        String name= scanner.next();
+        int nmbrAvailable= scanner.nextInt();
+        String type= scanner.next();
+        double price= scanner.nextDouble();
+
+        AdminController.editThisBikeController(product,name,nmbrAvailable, BikeType.valueOf(type),price , companyName);
+    }
+
+    static void editThisEdibleView(Product product) {
+
+        Scanner scanner = new Scanner(System.in);
+
+        String productDate= scanner.next();
+        String ExpirationDate= scanner.next();
+        String name= scanner.next();
+        int numberOfAvailable= scanner.nextInt();
+        double price= scanner.nextDouble();
+
+        AdminController.editThisEdibleController(product,name,numberOfAvailable,productDate,ExpirationDate,price);
+    }
+
+    static void editThisOfficeView(Product product) {
+
+        Scanner scanner = new Scanner(System.in);
+
+        String country= scanner.next();
+        int numberOfSheets= scanner.nextInt();
+        String paperType= scanner.next();
+        String name= scanner.next();
+        int nmbrAvailable=scanner.nextInt();
+        double price=scanner.nextDouble();
+
+        AdminController.EditThisOfficeController(product,name,numberOfSheets,paperType,country,nmbrAvailable,price);
+    }
+
+    static void EditThisPenView(Product product) {
+
+
+        Scanner scanner = new Scanner(System.in);
+
+        String country= scanner.next();
+        String color=scanner.next();
+        String name= scanner.next();
+        int nmbrAvailable= scanner.nextInt();
+        double price= scanner.nextDouble();
+
+        AdminController.EditThisPenController(product,name,country,color,nmbrAvailable,price);
+    }
+
+    static void editThisPencilView(Product product) {
+
+        Scanner scanner = new Scanner(System.in);
+
+        String country= scanner.next();
+        String type=scanner.next();
+        String name= scanner.next();
+        int nmbrAvailable= scanner.nextInt();
+        double price= scanner.nextDouble();
+
+        AdminController.editThisPencilController(product,name,country,type,nmbrAvailable,price);
+    }
 }

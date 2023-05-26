@@ -73,4 +73,25 @@ public abstract class Product {
     public int getAvailable() {
         return numberOfAvailable;
     }
+
+    public void setID(StringBuilder ID) {
+        this.ID = ID;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setNumber(int number) {
+        this.number = number;
+    }
+
+    public void setPrice(double price) {
+        this.price = price;
+    }
+
+    public void setNumberOfAvailable(int numberOfAvailable) {
+        this.numberOfAvailable = numberOfAvailable;
+    }
+
 }

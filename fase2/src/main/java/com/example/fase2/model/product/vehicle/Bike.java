@@ -27,4 +27,8 @@ public class Bike extends Vehicle{
     public void setType(BikeType type) {
         this.type = type;
     }
+
+    public void setBikeType(BikeType bikeType) {
+        this.type = bikeType;
+    }
 }
