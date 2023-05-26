@@ -224,4 +224,19 @@ public interface AdminController {
         pencil.setNumberOfAvailable(nmbrAvailable);
         pencil.setPrice(price);
     }
+
+    static void removeProductView(String removingProductID) throws InvalidID {
+
+        for (Product product : ModelData.getProducts()){
+
+            if(Objects.equals(product.getID(), removingProductID)){
+
+                ModelData.getProducts().remove(product);
+
+                return;
+            }
+        }
+
+        throw new InvalidID();
+    }
 }

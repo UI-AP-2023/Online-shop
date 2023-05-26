@@ -6,7 +6,6 @@ import com.example.fase2.model.product.Product;
 import com.example.fase2.model.product.stationerySupplies.PencilType;
 import com.example.fase2.model.product.vehicle.BikeType;
 import com.example.fase2.view.LoginPageView;
-
 import java.util.Scanner;
 
 public interface AdminView {
@@ -31,8 +30,7 @@ public interface AdminView {
 
                 case "EDIT" -> editProduct();
 
-                case "REMOVE" -> {
-                }
+                case "REMOVE" -> removeProductView();
 
                 case "EXIT" -> LoginPageView.showLoginPage();
 
@@ -41,13 +39,26 @@ public interface AdminView {
                     System.out.println("ADD: add a product to the shop(you should write product properties after 'ADD')\n");
                     System.out.println("EDIT: edit a product's properties that exist in the shop (you should write the product's new properties after 'EDIT')\n");
                     System.out.println("REMOVE: remove a product from the shop\n");
-                    System.out.println("SIGNUP: show sign up requests\n");
-                    System.out.println("BALANCE: show balance increase requests\n");
                     System.out.println("EXIT: for exit :/\n");
                 }
 
-                default -> System.out.println(order + " not found...\n\n");
+                default -> print(order + " not found...\n\n");
             }
+        }
+    }
+
+    static void removeProductView() {
+
+        Scanner scanner = new Scanner(System.in);
+
+        String removingProductID = scanner.next();
+
+        try {
+
+            AdminController.removeProductView(removingProductID);
+        } catch (InvalidID e){
+
+            System.out.println("The product ID is not found\n");
         }
     }
 
@@ -64,7 +75,7 @@ public interface AdminView {
             AdminController.editProductController(productID);
         }catch (InvalidID e){
 
-            System.out.println("this product is not found! ");
+            System.out.println("this product is not found\n");
         }
     }
 
