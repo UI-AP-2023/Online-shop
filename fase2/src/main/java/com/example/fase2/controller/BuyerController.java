@@ -5,10 +5,8 @@ import com.example.fase2.model.ModelData;
 import com.example.fase2.model.invoice_comment_score.Comment;
 import com.example.fase2.model.invoice_comment_score.Invoice;
 import com.example.fase2.model.product.Product;
-import com.example.fase2.model.requests.IncrementBalanceRequest;
 import com.example.fase2.model.userAccount.Buyer;
 import com.example.fase2.view.BuyerView.BuyerView;
-
 import java.util.ArrayList;
 import java.util.Objects;
 
@@ -61,7 +59,9 @@ public interface BuyerController {
 
     static void setIncrementBalanceRequest(double amount) {
 
-        IncrementBalanceRequest balanceRequest = new IncrementBalanceRequest(ModelData.getYou(), amount);
+        double pool = ModelData.getYou().getBalance();
+        pool+=amount;
+        ModelData.getYou().setBalance(pool);
     }
 
 
@@ -124,9 +124,9 @@ public interface BuyerController {
 
         Comment comment;
         if(BuyerController.checkBoughtThisProduct(product)) {
-             comment = new Comment(ModelData.getYou(), commentText, product.getID(), true);
+             comment = new Comment(ModelData.getYou(), commentText, product, true);
         }else {
-            comment = new Comment(ModelData.getYou(), commentText, product.getID(), false);
+            comment = new Comment(ModelData.getYou(), commentText, product, false);
         }
 
         product.AddComment(comment);

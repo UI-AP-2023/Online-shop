@@ -18,6 +18,7 @@ public class Bike extends Vehicle{
 
         this.category= ProductCategory.BIKE;
 
+        ModelData.getBikes().add(this);
     }
 
     public BikeType getType() {

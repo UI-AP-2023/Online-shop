@@ -2,6 +2,7 @@ package com.example.fase2.view.AdminView;
 
 import com.example.fase2.controller.AdminController;
 import com.example.fase2.model.InvalidID;
+import com.example.fase2.model.ModelData;
 import com.example.fase2.model.product.Product;
 import com.example.fase2.model.product.stationerySupplies.PencilType;
 import com.example.fase2.model.product.vehicle.BikeType;
@@ -32,7 +33,10 @@ public interface AdminView {
 
                 case "REMOVE" -> removeProductView();
 
-                case "EXIT" -> LoginPageView.showLoginPage();
+                case "EXIT" -> {
+                    ModelData.setYou(null);
+                    LoginPageView.showLoginPage();
+                }
 
                 case "HELP" -> {
 

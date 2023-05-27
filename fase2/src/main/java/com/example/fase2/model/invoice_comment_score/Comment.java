@@ -1,24 +1,24 @@
 package com.example.fase2.model.invoice_comment_score;
 
+import com.example.fase2.model.product.Product;
 import com.example.fase2.model.userAccount.Buyer;
 
 public class Comment {
 
     private final Buyer commenter;
     private final String comment;
-    private final String productID;
-    private boolean verified;
     private final boolean boughtByCommenter;
+    private final Product product;
 
     //====================================================================
 
-    public Comment(Buyer commenter, String comment, String productID, boolean boughtByCommenter){
+    public Comment(Buyer commenter, String comment, Product product, boolean boughtByCommenter){
 
         this.commenter = commenter;
         this.comment = comment;
-        this.productID = productID;
         this.boughtByCommenter = boughtByCommenter;
-        this.verified=false;
+        this.product = product;
+        product.getComments().add(this);
     }
 
     //---------------------------------------------------------------
@@ -34,20 +34,11 @@ public class Comment {
 
     //----------------------------------------------------------------
 
-    public void verifyComment(Boolean status) {
-        this.verified = status;
-    }
-
-    //----------------------------------------------------------------
-
-    public String getProductID() {
-        return productID;
+    public Product getProduct() {
+        return product;
     }
 
     //--------------------------------------------------------------
 
-    public boolean getStatus() {
-        return verified;
-    }
 }
 

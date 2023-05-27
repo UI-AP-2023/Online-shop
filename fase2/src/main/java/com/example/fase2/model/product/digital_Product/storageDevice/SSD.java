@@ -19,10 +19,11 @@ public class SSD extends StorageDevice {
         //set ID for every object with its properties
         this.ID = new StringBuilder(this.getClass().getName() + "-" + name + "-" + capacity + "GB-" + readingSpeed + "RS-" + writingSpeed + "WS");
 
-        ModelData.getProducts().add(this);
 
         this.category = ProductCategory.SSD;
 
+        ModelData.getProducts().add(this);
+        ModelData.getSSDs().add(this);
     }
 
     public double getReadingSpeed() {

@@ -23,6 +23,7 @@ public class Office extends StationerySupplies {
 
         this.category= ProductCategory.OFFICE;
 
+        ModelData.getOffices().add(this);
     }
 
     public int getNumberOfSheets() {

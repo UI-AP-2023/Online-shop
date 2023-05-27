@@ -3,8 +3,9 @@ package com.example.fase2.view;
 
 import com.example.fase2.controller.BuyerController;
 import com.example.fase2.controller.LoginPageController;
-import com.example.fase2.model.requests.SignupRequest;
+import com.example.fase2.model.ModelData;
 import com.example.fase2.model.userAccount.Buyer;
+
 import java.util.Scanner;
 
 public interface LoginPageView {
@@ -45,17 +46,19 @@ public interface LoginPageView {
 
         System.out.println("\nUSER NAME: ");
 
-        String userName, password = null, email=null, phone=null;
+        String userName = null, password = null, email = null, phone = null;
 
-        while (true) {
-            userName = scanner.nextLine();
+        boolean usernameChecked = false;
+        //---------------------------------------------------------------------------------------------Username
 
-            if (BuyerController.checkUserName(userName)) {
+        while (!usernameChecked) {
 
-                BuyerController.setUserName(userName);
-                break;
+            userName = scanner.next();
 
-            } else
+            if (BuyerController.checkUserName(userName))
+                usernameChecked = true;
+
+            else
                 System.out.println("\nTHIS USER NAME IS ALREADY EXIST , TRY ANOTHER ONE: ");
         }
 
@@ -80,7 +83,9 @@ public interface LoginPageView {
         System.out.println("EMAIL: ");
 
         boolean emailChecked = false;
+
         while (!emailChecked) {
+
             email = scanner.nextLine();
 
             if (!LoginPageController.emailCheck(email)) {
@@ -94,6 +99,7 @@ public interface LoginPageView {
         System.out.println("PHONE NUMBER: ");
 
         boolean phoneNumberChecked = false;
+
         while (!phoneNumberChecked) {
 
             phone = scanner.nextLine();
@@ -105,11 +111,7 @@ public interface LoginPageView {
             }
         }
 
-
-        Buyer requester = new Buyer(userName, password, phone, email);
-        SignupRequest request = new SignupRequest(requester);
-
-        LoginPageController.setSignupRequest(request);
+        ModelData.addCustomer(new Buyer(userName, password, phone, email));
 
         System.out.println("...YOUR SIGN UP REQUEST SENT FOR ADMIN...\n");
 

@@ -21,6 +21,7 @@ public class Pencil extends StationerySupplies {
 
         this.category= ProductCategory.PENCIL;
 
+        ModelData.getPencils().add(this);
     }
 
     public PencilType getType() {

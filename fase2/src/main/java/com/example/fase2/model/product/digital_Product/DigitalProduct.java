@@ -1,6 +1,6 @@
 package com.example.fase2.model.product.digital_Product;
 
-
+import com.example.fase2.model.ModelData;
 import com.example.fase2.model.product.Product;
 
 public abstract class DigitalProduct extends Product {
@@ -10,9 +10,11 @@ public abstract class DigitalProduct extends Product {
     //0000000000000000000000000000000000000000000000000===constructor
 
     protected DigitalProduct(int weight, int size, String name , int numberOfAvailable,double price) {
+
         super(name, numberOfAvailable,price);
         this.weight = weight;
         this.size = size;
+        ModelData.getDigitalProducts().add(this);
     }
 
     public double getWeight() {

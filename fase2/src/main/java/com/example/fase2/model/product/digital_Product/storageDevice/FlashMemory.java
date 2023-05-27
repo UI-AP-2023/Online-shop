@@ -19,10 +19,11 @@ public class FlashMemory extends StorageDevice {
         //set ID for every object with its properties
         this.ID = new StringBuilder(this.getClass().getName() + "-" + name + "-" + USB_Version);
 
-        ModelData.getProducts().add(this);
 
         this.category = ProductCategory.FLASH;
 
+        ModelData.getProducts().add(this);
+        ModelData.getFlashes().add(this);
     }
 
 

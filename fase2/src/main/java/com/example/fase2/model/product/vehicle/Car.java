@@ -25,6 +25,7 @@ public class Car extends Vehicle {
 
         this.category= ProductCategory.CAR;
 
+        ModelData.getCars().add(this);
     }
 
     public int getEngineVolume() {

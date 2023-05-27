@@ -21,6 +21,7 @@ public class Pen extends StationerySupplies {
 
         this.category= ProductCategory.PEN;
 
+        ModelData.getPens().add(this);
     }
 
     public String getColor() {

@@ -3,6 +3,7 @@ package com.example.fase2.model.product.digital_Product.storageDevice;
 
 //================================================================
 
+import com.example.fase2.model.ModelData;
 import com.example.fase2.model.product.digital_Product.DigitalProduct;
 
 public abstract class StorageDevice extends DigitalProduct {
@@ -13,6 +14,8 @@ public abstract class StorageDevice extends DigitalProduct {
 
         super(weight, size, name, numberOfAvailable,price);
         this.capacity = capacity;
+
+        ModelData.getStorageDevices().add(this);
     }
 
 

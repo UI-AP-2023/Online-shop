@@ -20,9 +20,11 @@ public class PC extends DigitalProduct {
         //set ID for every object with its properties
         this.ID = new StringBuilder(this.getClass().getName() + name + "-" + CPU_Model + "-" + ramMemoryCapacity);
 
-        ModelData.getProducts().add(this);
 
         this.category = ProductCategory.PC;
+
+        ModelData.getProducts().add(this);
+        ModelData.getPCs().add(this);
     }
 
     public int getRamMemoryCapacity() {

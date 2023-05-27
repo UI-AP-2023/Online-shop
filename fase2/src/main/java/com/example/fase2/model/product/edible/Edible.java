@@ -23,10 +23,11 @@ public class Edible extends Product {
         this.ID = new StringBuilder(name+staticID);
         staticID++;
 
-        ModelData.getProducts().add(this);
 
         this.category= ProductCategory.EDIBLE;
 
+        ModelData.getProducts().add(this);
+        ModelData.getEdibles().add(this);
     }
 
     public String getProduceDate() {

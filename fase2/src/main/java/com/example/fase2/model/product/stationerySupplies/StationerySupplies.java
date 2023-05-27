@@ -1,6 +1,7 @@
 package com.example.fase2.model.product.stationerySupplies;
 
 
+import com.example.fase2.model.ModelData;
 import com.example.fase2.model.product.Product;
 
 public abstract class StationerySupplies extends Product {
@@ -13,6 +14,8 @@ public abstract class StationerySupplies extends Product {
         super(name,nmbrAvailable,price);
 
         this.country = country;
+
+        ModelData.getStationerySupplies().add(this);
     }
 
     public String getCountry() {

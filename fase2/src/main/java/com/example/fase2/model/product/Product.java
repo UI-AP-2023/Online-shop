@@ -1,6 +1,8 @@
 package com.example.fase2.model.product;
 
 import java.util.ArrayList;
+import java.util.Collection;
+
 import com.example.fase2.model.invoice_comment_score.Comment;
 
 public abstract class Product {
@@ -94,4 +96,7 @@ public abstract class Product {
         this.numberOfAvailable = numberOfAvailable;
     }
 
+    public Collection<Comment> getComments() {
+        return comments;
+    }
 }

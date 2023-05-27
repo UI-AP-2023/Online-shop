@@ -1,12 +1,10 @@
 package com.example.fase2.controller;
 
 import com.example.fase2.model.ModelData;
-import com.example.fase2.model.requests.SignupRequest;
 import com.example.fase2.model.userAccount.Buyer;
 import com.example.fase2.view.AdminView.AdminView;
 import com.example.fase2.view.BuyerView.BuyerView;
 import com.example.fase2.view.LoginPageView;
-
 import java.util.Objects;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -24,15 +22,21 @@ public interface LoginPageController {
 
         // if  customer
         boolean isCustomer = false;
+
         for (Buyer buyer : ModelData.getCustomers()) {
+
             if (Objects.equals(buyer.getUserName(), username) && Objects.equals(buyer.getPassword(), password)) {
 
                 // to know who is using the program
                 ModelData.setYou(buyer);
+
                 isCustomer = true;
+
                 BuyerView.showBuyerMainMenu();
                 //------------------------------------
                 LoginPageView.showLoginPage();
+
+                break;
             }
         }
 
@@ -82,10 +86,6 @@ public interface LoginPageController {
     }
 
     //==================================================================================================
-
-    static void setSignupRequest(SignupRequest requester){
-        ModelData.getSignupRequests().add(requester);
-    }
 
     //==================================================================================================
 

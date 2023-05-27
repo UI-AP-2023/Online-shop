@@ -1,6 +1,7 @@
 package com.example.fase2.model.product.vehicle;
 
 
+import com.example.fase2.model.ModelData;
 import com.example.fase2.model.product.Product;
 
 public abstract class Vehicle extends Product {
@@ -13,6 +14,8 @@ public abstract class Vehicle extends Product {
 
         super(name, nmbrAvailable,price);
         this.companyName = companyName;
+
+        ModelData.getVehicles().add(this);
     }
 
     public String getCompanyName() {
