@@ -34,7 +34,7 @@ public interface LoginPageController {
 
                 BuyerView.showBuyerMainMenu();
                 //------------------------------------
-                LoginPageView.showLoginPage();
+//                LoginPageView.showLoginPage();
 
                 break;
             }

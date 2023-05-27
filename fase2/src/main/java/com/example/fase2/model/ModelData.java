@@ -1,6 +1,5 @@
 package com.example.fase2.model;
 
-import com.example.fase2.model.invoice_comment_score.Comment;
 import com.example.fase2.model.product.*;
 import com.example.fase2.model.product.digital_Product.DigitalProduct;
 import com.example.fase2.model.product.digital_Product.PC;
@@ -29,8 +28,6 @@ public abstract class ModelData {
 
     //-------------------------------------------------------
 
-    private static final ArrayList<Comment> commentsAwaiting = new ArrayList<>();
-
     //----------------------------------------------------
 
     //----------------------------------------------------------------------
@@ -57,9 +54,6 @@ public abstract class ModelData {
 
     //--------------------------------------------------------------
 
-    public static ArrayList<Comment> getCommentsAwaiting() {
-        return commentsAwaiting;
-    }
 
     //-------------------------------------------------------
 
@@ -75,9 +69,6 @@ public abstract class ModelData {
 
     //---------------------------------------------------------
 
-    public static void addCommentRequest(Comment comment) {
-        commentsAwaiting.add(comment);
-    }
 
     //------------------------------------------------------------------------
 

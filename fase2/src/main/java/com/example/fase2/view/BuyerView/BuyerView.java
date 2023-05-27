@@ -5,7 +5,15 @@ import com.example.fase2.controller.LoginPageController;
 import com.example.fase2.model.ModelData;
 import com.example.fase2.model.invoice_comment_score.Invoice;
 import com.example.fase2.model.product.Product;
-import com.example.fase2.model.product.ProductCategory;
+import com.example.fase2.model.product.digital_Product.PC;
+import com.example.fase2.model.product.digital_Product.storageDevice.FlashMemory;
+import com.example.fase2.model.product.digital_Product.storageDevice.SSD;
+import com.example.fase2.model.product.edible.Edible;
+import com.example.fase2.model.product.stationerySupplies.Office;
+import com.example.fase2.model.product.stationerySupplies.Pen;
+import com.example.fase2.model.product.stationerySupplies.Pencil;
+import com.example.fase2.model.product.vehicle.Bike;
+import com.example.fase2.model.product.vehicle.Car;
 import com.example.fase2.view.LoginPageView;
 
 import java.util.Scanner;
@@ -37,26 +45,66 @@ public interface BuyerView {
 
     static void showProductsPageOptions() {
         print("\n1. SHOW ALL OF PRODUCTS IN THE SHOP");
-        print("2. USE FILTER FOR SHOWING PRODUCTS");
-        print("3. RETURN TO PREVIOUS PAGE\n");
+        print("2. FILTER PRODUCTS BY CATEGORIES");
+        print("3. FILTER PRODUCT BY PRICE\n");
+        print("4. RETURN TO PREVIOUS PAGE\n");
 
         Scanner scanner = new Scanner(System.in);
         int order = scanner.nextInt();
 
         switch (order) {
 
-            case 1 -> showAllProducts();
+            case 1 -> showAllProducts(2000000000);
 
-            case 2 -> useFilters();
+            case 2 -> useCategoryFilters();
 
-            case 3 -> showBuyerMainMenu();
+            case 3-> usePriceFilters();
+
+            case 4 -> showBuyerMainMenu();
+        }
+
+    }
+
+    static void usePriceFilters() {
+
+        print("MAXIMUM PRICE:");
+
+        Scanner scanner = new Scanner(System.in);
+
+        int maximumPrice = scanner.nextInt();
+
+        print("WHICH CATEGORY: ");
+        print("1.PC, 2.FLASH, 3.SSD, 4.EDIBLE, 5.OFFICE, 6.PEN, 7.PENCIL, 8.BIKE, 9.CAR: ");
+
+        int filterNum = scanner.nextInt();
+
+        switch (filterNum) {
+
+            case 1: showPCs(maximumPrice);
+
+            case 2: showFlashes(maximumPrice);
+
+            case 3: showSSDs(maximumPrice);
+
+            case 4: showEdibles(maximumPrice);
+
+            case 5: showOffices(maximumPrice);
+
+            case 6: showPens(maximumPrice);
+
+            case 7: showPencils(maximumPrice);
+
+            case 8: showBikes(maximumPrice);
+
+            case 9: showCars(maximumPrice);
+
         }
 
     }
 
     //----------------------------------------------------------
 
-    static void useFilters() {
+    static void useCategoryFilters() {
 
         print("1.PC, 2.FLASH, 3.SSD, 4.EDIBLE, 5.OFFICE, 6.PEN, 7.PENCIL, 8.BIKE, 9.CAR: ");
 
@@ -65,23 +113,23 @@ public interface BuyerView {
 
         switch (filterNum) {
 
-            case 1: showPCs();
+            case 1: showPCs(2000000000);
 
-            case 2: showFlashes();
+            case 2: showFlashes(2000000000);
 
-            case 3: showSSDs();
+            case 3: showSSDs(2000000000);
 
-            case 4: showEdibles();
+            case 4: showEdibles(2000000000);
 
-            case 5: showOffices();
+            case 5: showOffices(2000000000);
 
-            case 6: showPens();
+            case 6: showPens(2000000000);
 
-            case 7: showPencils();
+            case 7: showPencils(2000000000);
 
-            case 8: showBikes();
+            case 8: showBikes(2000000000);
 
-            case 9: showCars();
+            case 9: showCars(2000000000);
 
         }
 
@@ -89,108 +137,106 @@ public interface BuyerView {
 
     //---------------------------------------------------------
 
-    static void showPCs() {
+    static void showPCs(int maxPrice) {
 
-        for (Product product : ModelData.getProducts()){
-            if (product.getCategory() == ProductCategory.PC) {
+        for (PC pc : ModelData.getPCs()){
 
-                print(product);
+            if(pc.getPrice() <= maxPrice) {
+                print(pc);
             }
         }
 
         enterProductsPageNumber();
     }
 
-    static void showFlashes() {
+    static void showFlashes(int maxPrice) {
 
-        for (Product product : ModelData.getProducts()){
-            if (product.getCategory() == ProductCategory.FLASH) {
+        for (FlashMemory flash : ModelData.getFlashes()){
 
-                print(product);
+            if(flash.getPrice() <= maxPrice) {
+                print(flash);
             }
         }
 
         enterProductsPageNumber();
     }
 
-    static void showSSDs() {
+    static void showSSDs(int maxPrice) {
 
-        for (Product product : ModelData.getProducts()){
-            if (product.getCategory() == ProductCategory.SSD) {
+        for (SSD ssd : ModelData.getSSDs()){
 
-                print(product);
+            if(ssd.getPrice() <= maxPrice) {
+                print(ssd);
             }
         }
 
         enterProductsPageNumber();
     }
 
-    static void showEdibles() {
+    static void showEdibles(int maxPrice) {
 
-        for (Product product : ModelData.getProducts()){
-            if (product.getCategory() == ProductCategory.EDIBLE) {
+        for (Edible edible : ModelData.getEdibles()){
 
-                print(product);
+            if(edible.getPrice() <= maxPrice) {
+                print(edible);
             }
         }
 
         enterProductsPageNumber();
     }
 
-    static void showPencils() {
+    static void showPencils(int maxPrice) {
 
-        for (Product product : ModelData.getProducts()){
-            if (product.getCategory() == ProductCategory.PENCIL) {
+        for (Pencil pencil : ModelData.getPencils()){
 
-                print(product);
+            if(pencil.getPrice() <= maxPrice) {
+                print(pencil);
             }
         }
 
         enterProductsPageNumber();
     }
 
-    static void showPens() {
+    static void showPens(int maxPrice) {
 
-        for (Product product : ModelData.getProducts()){
-            if (product.getCategory() == ProductCategory.PEN) {
+        for (Pen pen : ModelData.getPens()){
 
-                print(product);
+            if(pen.getPrice() <= maxPrice) {
+                print(pen);
             }
         }
 
         enterProductsPageNumber();
     }
 
-    static void showOffices() {
+    static void showOffices(int maxPrice) {
 
-        for (Product product : ModelData.getProducts()){
-            if (product.getCategory() == ProductCategory.OFFICE) {
+        for (Office off : ModelData.getOffices()){
 
-                print(product);
+            if(off.getPrice() <= maxPrice) {
+                print(off);
             }
         }
-
         enterProductsPageNumber();
     }
 
-    static void showBikes() {
+    static void showBikes(int maxPrice) {
 
-        for (Product product : ModelData.getProducts()){
-            if (product.getCategory() == ProductCategory.BIKE) {
+        for (Bike bike : ModelData.getBikes()){
 
-                print(product);
+            if(bike.getPrice() <= maxPrice) {
+                print(bike);
             }
         }
-
         enterProductsPageNumber();
     }
 
-    static void showCars() {
+    static void showCars(int maxPrice) {
 
-        for (Product product : ModelData.getProducts()){
-            if (product.getCategory() == ProductCategory.CAR) {
+        for (Car car : ModelData.getCars()){
 
-                print(product);
+            if(car.getPrice() <= maxPrice) {
+                print(car);
             }
         }
 
@@ -200,16 +246,20 @@ public interface BuyerView {
 
     //--------------------------------------------------
 
-    static void showAllProducts() {
+    static void showAllProducts(int maxPrice) {
 
-        for (Product product : BuyerController.getProducts()) {
-            print(product.toString());
+        for (Product product : ModelData.getProducts()) {
+
+            if(product.getPrice() <= maxPrice) {
+                print(product.toString());
+            }
         }
 
         enterProductsPageNumber();
     }
 
     static void enterProductsPageNumber() {
+
         print("\nENTER \"0\" FOR PREVIOUS PAGE OR ENTER YOUR PRODUCT NUMBER");
 
         int numberOfProduct = 1000;
@@ -262,7 +312,7 @@ public interface BuyerView {
 
             case 3 -> rateThisProduct(product);
 
-            case 4 -> showAllProducts();
+            case 4 -> showAllProducts(2000000000);
         }
     }
 
