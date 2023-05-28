@@ -1,11 +1,13 @@
 package com.example.fase2.view;
 
-
 import com.example.fase2.controller.BuyerController;
 import com.example.fase2.controller.LoginPageController;
+import com.example.fase2.exceptions.InUsedUserNameException;
+import com.example.fase2.exceptions.InvalidEmailException;
+import com.example.fase2.exceptions.InvalidPasswordException;
+import com.example.fase2.exceptions.InvalidPhoneNumberException;
 import com.example.fase2.model.ModelData;
 import com.example.fase2.model.userAccount.Buyer;
-
 import java.util.Scanner;
 
 public interface LoginPageView {
@@ -55,11 +57,13 @@ public interface LoginPageView {
 
             userName = scanner.next();
 
-            if (BuyerController.checkUserName(userName))
-                usernameChecked = true;
+            try {
 
-            else
+                BuyerController.checkUserName(userName);
+                usernameChecked = true;
+            } catch (InUsedUserNameException e) {
                 System.out.println("\nTHIS USER NAME IS ALREADY EXIST , TRY ANOTHER ONE: ");
+            }
         }
 
         //---------------------------------------------------------------------------------------------PASSWORD
@@ -72,10 +76,11 @@ public interface LoginPageView {
         while (!passwordChecked) {
             password = scanner.nextLine();
 
-            if (!LoginPageController.passwordCheck(password)) {
-                System.out.println("PASSWORD IS NOT VALID, ENTER ANOTHER ONE");
-            } else {
+            try {
+                LoginPageController.passwordCheck(password);
                 passwordChecked = true;
+            } catch (InvalidPasswordException e) {
+                System.out.println("PASSWORD IS NOT VALID, ENTER ANOTHER ONE");
             }
         }
 
@@ -88,10 +93,13 @@ public interface LoginPageView {
 
             email = scanner.nextLine();
 
-            if (!LoginPageController.emailCheck(email)) {
-                System.out.println("EMAIL IS NOT VALID, ENTER ANOTHER ONE");
-            } else {
+            try {
+
+                LoginPageController.emailCheck(email);
                 emailChecked = true;
+
+            } catch (InvalidEmailException e) {
+                System.out.println("EMAIL IS NOT VALID, ENTER ANOTHER ONE");
             }
         }
 
@@ -104,10 +112,13 @@ public interface LoginPageView {
 
             phone = scanner.nextLine();
 
-            if (!LoginPageController.phoneNumberCheck(phone)) {
-                System.out.println("PHONE NUMBER IS NOT VALID, ENTER ANOTHER ONE");
-            } else {
+            try {
+
+                LoginPageController.phoneNumberCheck(phone);
                 phoneNumberChecked = true;
+
+            } catch (InvalidPhoneNumberException e) {
+                System.out.println("PHONE NUMBER IS NOT VALID, ENTER ANOTHER ONE");
             }
         }
 
@@ -128,9 +139,4 @@ public interface LoginPageView {
     }
 
     //======================================================================
-
-    static void invalidParametersView() {
-        System.out.println("\n...YOUR EMAIL OR PHONE NUMBER OR YOUR PASSWORD IS NOT VALID FOR SIGNING UP...\nPLEASE TRY AGAIN\n");
-        signupView();
-    }
 }
