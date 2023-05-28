@@ -1,5 +1,8 @@
 package com.example.fase2.controller;
 
+import com.example.fase2.exceptions.InvalidEmailException;
+import com.example.fase2.exceptions.InvalidPasswordException;
+import com.example.fase2.exceptions.InvalidPhoneNumberException;
 import com.example.fase2.model.ModelData;
 import com.example.fase2.model.userAccount.Buyer;
 import com.example.fase2.view.AdminView.AdminView;
@@ -54,28 +57,28 @@ public interface LoginPageController {
 
     //=============================================================================================================
 
-    static boolean emailCheck(String email) {
+    static void emailCheck(String email) throws InvalidEmailException {
 
         Pattern emailPattern = Pattern.compile("^\\w+@\\D+\\.(org|com)");
         Matcher emailMatcher = emailPattern.matcher(email);
-        return emailMatcher.find();
+        if (!emailMatcher.find()) throw new InvalidEmailException();
     }
 
     //=================================================================================================================
 
-    static boolean phoneNumberCheck(String phone) {
+    static void phoneNumberCheck(String phone) throws InvalidPhoneNumberException {
 
         Pattern phoneNumberPattern = Pattern.compile("^0\\d{10}$");
         Matcher phoneNumberMatcher = phoneNumberPattern.matcher(phone);
-        return phoneNumberMatcher.find();
+        if (!phoneNumberMatcher.find()) throw new InvalidPhoneNumberException();
     }
 
     //=================================================================================================================
 
-    static boolean passwordCheck(String password){
+    static void passwordCheck(String password) throws InvalidPasswordException {
         Pattern passwordPattern = Pattern.compile("^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[!@#~`\\-_$%^&*+=])[a-zA-z\\d!@#~`\\-_$%^&*+=]{4,}$");
         Matcher passwordMatcher = passwordPattern.matcher(password);
-        return passwordMatcher.find();
+        if(!passwordMatcher.find()) throw new InvalidPasswordException();
     }
 
     //====================================================================================================

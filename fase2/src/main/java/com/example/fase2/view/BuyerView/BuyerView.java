@@ -2,6 +2,7 @@ package com.example.fase2.view.BuyerView;
 
 import com.example.fase2.controller.BuyerController;
 import com.example.fase2.controller.LoginPageController;
+import com.example.fase2.exceptions.*;
 import com.example.fase2.model.ModelData;
 import com.example.fase2.model.invoice_comment_score.Invoice;
 import com.example.fase2.model.product.Product;
@@ -58,7 +59,7 @@ public interface BuyerView {
 
             case 2 -> useCategoryFilters();
 
-            case 3-> usePriceFilters();
+            case 3 -> usePriceFilters();
 
             case 4 -> showBuyerMainMenu();
         }
@@ -80,23 +81,32 @@ public interface BuyerView {
 
         switch (filterNum) {
 
-            case 1: showPCs(maximumPrice);
+            case 1:
+                showPCs(maximumPrice);
 
-            case 2: showFlashes(maximumPrice);
+            case 2:
+                showFlashes(maximumPrice);
 
-            case 3: showSSDs(maximumPrice);
+            case 3:
+                showSSDs(maximumPrice);
 
-            case 4: showEdibles(maximumPrice);
+            case 4:
+                showEdibles(maximumPrice);
 
-            case 5: showOffices(maximumPrice);
+            case 5:
+                showOffices(maximumPrice);
 
-            case 6: showPens(maximumPrice);
+            case 6:
+                showPens(maximumPrice);
 
-            case 7: showPencils(maximumPrice);
+            case 7:
+                showPencils(maximumPrice);
 
-            case 8: showBikes(maximumPrice);
+            case 8:
+                showBikes(maximumPrice);
 
-            case 9: showCars(maximumPrice);
+            case 9:
+                showCars(maximumPrice);
 
         }
 
@@ -113,23 +123,32 @@ public interface BuyerView {
 
         switch (filterNum) {
 
-            case 1: showPCs(2000000000);
+            case 1:
+                showPCs(2000000000);
 
-            case 2: showFlashes(2000000000);
+            case 2:
+                showFlashes(2000000000);
 
-            case 3: showSSDs(2000000000);
+            case 3:
+                showSSDs(2000000000);
 
-            case 4: showEdibles(2000000000);
+            case 4:
+                showEdibles(2000000000);
 
-            case 5: showOffices(2000000000);
+            case 5:
+                showOffices(2000000000);
 
-            case 6: showPens(2000000000);
+            case 6:
+                showPens(2000000000);
 
-            case 7: showPencils(2000000000);
+            case 7:
+                showPencils(2000000000);
 
-            case 8: showBikes(2000000000);
+            case 8:
+                showBikes(2000000000);
 
-            case 9: showCars(2000000000);
+            case 9:
+                showCars(2000000000);
 
         }
 
@@ -139,9 +158,9 @@ public interface BuyerView {
 
     static void showPCs(int maxPrice) {
 
-        for (PC pc : ModelData.getPCs()){
+        for (PC pc : ModelData.getPCs()) {
 
-            if(pc.getPrice() <= maxPrice) {
+            if (pc.getPrice() <= maxPrice) {
                 print(pc);
             }
         }
@@ -151,9 +170,9 @@ public interface BuyerView {
 
     static void showFlashes(int maxPrice) {
 
-        for (FlashMemory flash : ModelData.getFlashes()){
+        for (FlashMemory flash : ModelData.getFlashes()) {
 
-            if(flash.getPrice() <= maxPrice) {
+            if (flash.getPrice() <= maxPrice) {
                 print(flash);
             }
         }
@@ -163,9 +182,9 @@ public interface BuyerView {
 
     static void showSSDs(int maxPrice) {
 
-        for (SSD ssd : ModelData.getSSDs()){
+        for (SSD ssd : ModelData.getSSDs()) {
 
-            if(ssd.getPrice() <= maxPrice) {
+            if (ssd.getPrice() <= maxPrice) {
                 print(ssd);
             }
         }
@@ -175,9 +194,9 @@ public interface BuyerView {
 
     static void showEdibles(int maxPrice) {
 
-        for (Edible edible : ModelData.getEdibles()){
+        for (Edible edible : ModelData.getEdibles()) {
 
-            if(edible.getPrice() <= maxPrice) {
+            if (edible.getPrice() <= maxPrice) {
                 print(edible);
             }
         }
@@ -187,9 +206,9 @@ public interface BuyerView {
 
     static void showPencils(int maxPrice) {
 
-        for (Pencil pencil : ModelData.getPencils()){
+        for (Pencil pencil : ModelData.getPencils()) {
 
-            if(pencil.getPrice() <= maxPrice) {
+            if (pencil.getPrice() <= maxPrice) {
                 print(pencil);
             }
         }
@@ -199,9 +218,9 @@ public interface BuyerView {
 
     static void showPens(int maxPrice) {
 
-        for (Pen pen : ModelData.getPens()){
+        for (Pen pen : ModelData.getPens()) {
 
-            if(pen.getPrice() <= maxPrice) {
+            if (pen.getPrice() <= maxPrice) {
                 print(pen);
             }
         }
@@ -211,9 +230,9 @@ public interface BuyerView {
 
     static void showOffices(int maxPrice) {
 
-        for (Office off : ModelData.getOffices()){
+        for (Office off : ModelData.getOffices()) {
 
-            if(off.getPrice() <= maxPrice) {
+            if (off.getPrice() <= maxPrice) {
                 print(off);
             }
         }
@@ -222,9 +241,9 @@ public interface BuyerView {
 
     static void showBikes(int maxPrice) {
 
-        for (Bike bike : ModelData.getBikes()){
+        for (Bike bike : ModelData.getBikes()) {
 
-            if(bike.getPrice() <= maxPrice) {
+            if (bike.getPrice() <= maxPrice) {
                 print(bike);
             }
         }
@@ -233,9 +252,9 @@ public interface BuyerView {
 
     static void showCars(int maxPrice) {
 
-        for (Car car : ModelData.getCars()){
+        for (Car car : ModelData.getCars()) {
 
-            if(car.getPrice() <= maxPrice) {
+            if (car.getPrice() <= maxPrice) {
                 print(car);
             }
         }
@@ -250,7 +269,7 @@ public interface BuyerView {
 
         for (Product product : ModelData.getProducts()) {
 
-            if(product.getPrice() <= maxPrice) {
+            if (product.getPrice() <= maxPrice) {
                 print(product.toString());
             }
         }
@@ -280,13 +299,14 @@ public interface BuyerView {
 
     static void showProduct(int numberOfProduct) {
 
-        if (BuyerController.getThisProduct(numberOfProduct) != null) {
+//        if (BuyerController.getThisProduct(numberOfProduct) != null) {
 
+        try {
             print(BuyerController.getThisProduct(numberOfProduct));
 
             BuyerView.showThisProductOptions(BuyerController.getThisProduct(numberOfProduct));
 
-        } else {
+        } catch (NullPointerException e) {
             print("\nTHE NUMBER YOU ENTERED IS NOT FOR ANY PRODUCT,PLEASE ENTER ANOTHER ONE");
             enterProductsPageNumber();
         }
@@ -456,9 +476,11 @@ public interface BuyerView {
         Scanner scanner = new Scanner(System.in);
         int number = scanner.nextInt();
 
-        if (BuyerController.removeThisFromCart(number)) {
+        try {
+            BuyerController.removeThisFromCart(number);
             print("Removed!\n");
-        } else {
+
+        } catch (InvalidProductNumber e) {
             print("The product with this number is not in your cart");
         }
 
@@ -520,14 +542,17 @@ public interface BuyerView {
         while (true) {
             phoneNumber = scanner.nextLine();
 
-            if (LoginPageController.phoneNumberCheck(phoneNumber)) {
+            try {
+                LoginPageController.phoneNumberCheck(phoneNumber);
 
                 BuyerController.setPhoneNumber(phoneNumber);
 
                 print("\nYOUR LINKED PHONE NUMBER CHANGED SUCCESSFULLY\n");
                 break;
 
-            } else print("\nTHIS PHONE NUMBER IS NOT VALID , TRY ANOTHER ONE: ");
+            } catch (InvalidPhoneNumberException e) {
+                print("\nTHIS PHONE NUMBER IS NOT VALID , TRY ANOTHER ONE: ");
+            }
         }
 
     }
@@ -544,14 +569,18 @@ public interface BuyerView {
         while (true) {
             email = scanner.nextLine();
 
-            if (LoginPageController.emailCheck(email)) {
+            try {
+
+                LoginPageController.emailCheck(email);
 
                 BuyerController.setEmail(email);
 
                 print("\nYOUR EMAIL CHANGED SUCCESSFULLY\n");
                 break;
 
-            } else print("\nTHIS EMAIL IS NOT VALID , TRY ANOTHER ONE: ");
+            } catch (InvalidEmailException e) {
+                print("\nTHIS EMAIL IS NOT VALID , TRY ANOTHER ONE: ");
+            }
         }
 
 
@@ -568,14 +597,19 @@ public interface BuyerView {
         while (true) {
             userName = scanner.nextLine();
 
-            if (BuyerController.checkUserName(userName)) {
+            try {
+
+
+                BuyerController.checkUserName(userName);
 
                 BuyerController.setUserName(userName);
 
                 print("\nYOUR USER NAME CHANGED SUCCESSFULLY\n");
                 break;
 
-            } else print("\nTHIS USER NAME IS ALREADY EXIST , TRY ANOTHER ONE: ");
+            } catch (InUsedUserNameException e) {
+                print("\nTHIS USER NAME IS ALREADY EXIST , TRY ANOTHER ONE: ");
+            }
         }
 
     }
@@ -591,14 +625,17 @@ public interface BuyerView {
         while (true) {
             password = scanner.nextLine();
 
-            if (LoginPageController.passwordCheck(password)) {
+            try {
+                LoginPageController.passwordCheck(password);
 
                 BuyerController.setPassword(password);
 
                 print("\nYOUR PASSWORD CHANGED SUCCESSFULLY\n");
                 break;
 
-            } else print("\nTHIS PASSWORD IS NOT VALID , TRY ANOTHER ONE: ");
+            } catch (InvalidPasswordException e) {
+                print("\nTHIS PASSWORD IS NOT VALID , TRY ANOTHER ONE: ");
+            }
         }
 
     }

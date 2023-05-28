@@ -1,6 +1,8 @@
 package com.example.fase2.controller;
 
 
+import com.example.fase2.exceptions.InUsedUserNameException;
+import com.example.fase2.exceptions.InvalidProductNumber;
 import com.example.fase2.model.ModelData;
 import com.example.fase2.model.invoice_comment_score.Comment;
 import com.example.fase2.model.invoice_comment_score.Invoice;
@@ -20,12 +22,12 @@ public interface BuyerController {
     }
     //---------------------------------------------------------------------
 
-    static boolean checkUserName(String userName) {
+    static boolean checkUserName(String userName) throws InUsedUserNameException {
 
         for (Buyer customer : ModelData.getCustomers()) {
 
             if (Objects.equals(customer.getUserName(), userName)) {
-                return false;
+                throw new InUsedUserNameException();
             }
         }
 
@@ -101,7 +103,7 @@ public interface BuyerController {
                 return product;
             }
         }
-        return null;
+        throw new NullPointerException();
     }
 
     static boolean checkNumberForBuying(Product product, int numberOfProductsYouWant) {
@@ -188,16 +190,16 @@ public interface BuyerController {
         return sum;
     }
 //--------------------------------------------------------------------------
-    static boolean removeThisFromCart(int number) {
+    static void removeThisFromCart(int number) throws InvalidProductNumber {
 
 
         for (Product product: ModelData.getYou().getProductsCart()) {
             if(product.getNumber() == number){
                 ModelData.getYou().getProductsCart().remove(product);
-                return true;
+                return ;
             }
         }
-        return false;
+        throw new InvalidProductNumber();
     }
 
     //-----------------------------------------------------------------------

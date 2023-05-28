@@ -1,6 +1,6 @@
 package com.example.fase2.controller;
 
-import com.example.fase2.model.InvalidID;
+import com.example.fase2.exceptions.InvalidID;
 import com.example.fase2.model.ModelData;
 import com.example.fase2.model.product.Product;
 import com.example.fase2.model.product.digital_Product.PC;
