@@ -1,4 +1,4 @@
-package com.example.fase2.model;
+package com.example.fase2.exceptions;
 
 public class InvalidID extends Throwable {
 
