@@ -3,8 +3,8 @@ module com.example.fase2 {
     requires javafx.fxml;
 
 
-    opens com.example.fase2 to javafx.fxml;
-    exports com.example.fase2;
-    exports com.example.fase2.exceptions;
-    opens com.example.fase2.exceptions to javafx.fxml;
+    opens com.example.phase2 to javafx.fxml;
+    exports com.example.phase2;
+    exports com.example.phase2.exceptions;
+    opens com.example.phase2.exceptions to javafx.fxml;
 }
