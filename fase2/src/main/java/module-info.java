@@ -5,4 +5,6 @@ module com.example.fase2 {
 
     opens com.example.fase2 to javafx.fxml;
     exports com.example.fase2;
+    exports com.example.fase2.exceptions;
+    opens com.example.fase2.exceptions to javafx.fxml;
 }

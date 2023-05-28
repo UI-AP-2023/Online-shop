@@ -36,10 +36,21 @@ public class Buyer extends Account{
     }
 
     //--------------------------------------------------
+//    @Override
+//    public String toString(){
+//        return "USER NAME: (" + userName + ") , PASSWORD: (" + password + "), EMAIL: (" + email + ") , PHONE NUMBER: " + phoneNumber;
+//    }
+
     @Override
-    public String toString(){
-        return "USER NAME: (" + userName + ") , PASSWORD: (" + password + "), EMAIL: (" + email + ") , PHONE NUMBER: " + phoneNumber;
+    public String toString() {
+        return "Buyer{" +
+                "userName='" + userName + '\'' +
+                ", email='" + email + '\'' +
+                ", phoneNumber='" + phoneNumber + '\'' +
+                ", balance=" + balance +
+                '}';
     }
+
 
     //--------------------------------------------------
 

@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 
 import com.example.fase2.model.invoice_comment_score.Comment;
+import com.example.fase2.model.invoice_comment_score.Score;
 
 public abstract class Product {
 
@@ -98,5 +99,13 @@ public abstract class Product {
 
     public Collection<Comment> getComments() {
         return comments;
+    }
+
+    public double getAverageScore(){
+        double sum = 0;
+        for (int i : buyersScores) {
+            sum += i;
+        }
+        return sum / buyersScores.size();
     }
 }
