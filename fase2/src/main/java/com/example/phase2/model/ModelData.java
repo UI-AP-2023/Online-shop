@@ -1,5 +1,6 @@
 package com.example.phase2.model;
 
+import com.example.phase2.model.Discount.Discount;
 import com.example.phase2.model.product.*;
 import com.example.phase2.model.product.digital_Product.DigitalProduct;
 import com.example.phase2.model.product.digital_Product.PC;
@@ -21,6 +22,10 @@ import java.util.ArrayList;
 public abstract class ModelData {
 
     private static final ArrayList<Buyer> customers = new ArrayList<>();
+
+    //---------------------------------------------------------
+
+    private static final ArrayList<Discount> discountCodes = new ArrayList<>();
 
     //---------------------------------------------------------
 
@@ -150,6 +155,10 @@ public abstract class ModelData {
 
     public static ArrayList<Vehicle> getVehicles() {
         return vehicles;
+    }
+
+    public static ArrayList<Discount> getDiscountCodes() {
+        return discountCodes;
     }
     //--------------------------------------------------------------------
 

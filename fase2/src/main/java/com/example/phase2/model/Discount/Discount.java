@@ -6,11 +6,11 @@ import java.util.Random;
 public class Discount {
 
     private final int discountPercent;
-    private final LocalDate expirationDate;
+    private final int expirationDate;
     private final int capacity;
     private final String discountCode;
 
-    public Discount(int discountPercent, LocalDate date, int capacity, String discountCode) {
+    public Discount(int discountPercent, int date, int capacity, String discountCode) {
 
         this.discountPercent = discountPercent;
         this.expirationDate = date;
@@ -18,14 +18,14 @@ public class Discount {
         this.discountCode = discountCode;
     }
 
-    public Discount(int discountPercent, LocalDate date, int capacity) {
+    public Discount(int discountPercent, int date, int capacity) {
 
         this.discountPercent = discountPercent;
         this.expirationDate = date;
         this.capacity = capacity;
 
-        String randomChars = getRandomChars(3);
-        String randomNums = getRandomNums(3);
+        String randomChars = getRandomChars();
+        String randomNums = getRandomNums();
         this.discountCode = randomChars + randomNums;
     }
 
@@ -55,17 +55,17 @@ public class Discount {
         return CHARACTERS.charAt(index);
     }
 
-    private static String getRandomChars(int length) {
+    private static String getRandomChars() {
         StringBuilder sb = new StringBuilder();
-        for (int i = 0; i < length; i++) {
+        for (int i = 0; i < 4; i++) {
             sb.append(getRandomChar());
         }
         return sb.toString();
     }
 
-    private static String getRandomNums(int length) {
+    private static String getRandomNums() {
         StringBuilder sb = new StringBuilder();
-        for (int i = 0; i < length; i++) {
+        for (int i = 0; i < 3; i++) {
             sb.append(rnd.nextInt(10));
         }
         return sb.toString();

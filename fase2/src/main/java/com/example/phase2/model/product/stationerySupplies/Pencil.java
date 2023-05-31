@@ -1,12 +1,14 @@
 package com.example.phase2.model.product.stationerySupplies;
 
 
+import com.example.phase2.model.Discount.Discountable;
 import com.example.phase2.model.ModelData;
 import com.example.phase2.model.product.ProductCategory;
 
-public class Pencil extends StationerySupplies {
+public class Pencil extends StationerySupplies implements Discountable {
 
     private PencilType type;
+    private int discountPercent;
 
     //0000000000000000000000000000000000000000000000000===CONSTRUCTOR
 
@@ -31,5 +33,14 @@ public class Pencil extends StationerySupplies {
     public void setType(PencilType type) {
         this.type = type;
     }
-}
 
+    @Override
+    public double getPriceWithDiscount() {
+        return this.price - (this.price * ((double) discountPercent / 100));
+    }
+
+    @Override
+    public void setDiscountPercent(int percent) {
+        this.discountPercent = percent;
+    }
+}

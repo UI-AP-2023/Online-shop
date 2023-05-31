@@ -1,6 +1,7 @@
 package com.example.phase2.controller;
 
 import com.example.phase2.exceptions.InvalidID;
+import com.example.phase2.model.Discount.Discount;
 import com.example.phase2.model.ModelData;
 import com.example.phase2.model.product.Product;
 import com.example.phase2.model.product.digital_Product.PC;
@@ -238,5 +239,17 @@ public interface AdminController {
         }
 
         throw new InvalidID();
+    }
+
+    static void addRandomDiscountCode(int discountPercent, int daysRemain, int capacity) {
+
+        Discount discount = new Discount(discountPercent, daysRemain, capacity);
+        ModelData.getDiscountCodes().add(discount);
+    }
+
+    static void addThisDiscountCode(int discountPercent, int daysRemain, int capacity, String order) {
+
+        Discount discount = new Discount(discountPercent, daysRemain, capacity, order);
+        ModelData.getDiscountCodes().add(discount);
     }
 }
