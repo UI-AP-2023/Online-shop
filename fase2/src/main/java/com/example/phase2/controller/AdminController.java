@@ -252,4 +252,10 @@ public interface AdminController {
         Discount discount = new Discount(discountPercent, daysRemain, capacity, order);
         ModelData.getDiscountCodes().add(discount);
     }
+
+    static void setDiscountPercentage(int discountPercentage) {
+
+        new Pen("","","",0,0).setDiscountPercent(discountPercentage);
+        new Pencil("",PencilType.H2,"",0,0).setDiscountPercent(discountPercentage);
+    }
 }

@@ -5,7 +5,7 @@ import java.util.Collection;
 
 import com.example.phase2.model.invoice_comment_score.Comment;
 
-public abstract class Product {
+public class Product implements Comparable<Product> {
 
     protected StringBuilder ID;
     protected String name;
@@ -13,19 +13,19 @@ public abstract class Product {
     protected int numberOfAvailable;
     protected ArrayList<Integer> buyersScores = new ArrayList<>();
     protected ProductCategory category;
-    private static int staticNumber=1;
+    private static int staticNumber = 1;
     protected int number;
     public ArrayList<Comment> comments = new ArrayList<>();
 
     //======================================================================================
 
-    protected Product(String name, int numberOfAvailable, double price){
+    protected Product(String name, int numberOfAvailable, double price) {
 
         this.name = name;
         this.price = price;
         this.numberOfAvailable = numberOfAvailable;
 
-        this.number=staticNumber;
+        this.number = staticNumber;
         staticNumber++;
     }
 
@@ -39,7 +39,7 @@ public abstract class Product {
 
     @Override
     public String toString() {
-        return number + " . " + name + "\n" + price + "$" + "\nAVAILABLE: "+ numberOfAvailable;
+        return number + " . " + name + "\n" + price + "$" + "\nAVAILABLE: " + numberOfAvailable;
     }
 
     //-------------------------------------------------------------------------------------
@@ -56,13 +56,13 @@ public abstract class Product {
 
     //---------------------------------------------------
 
-    public int getNumber(){
+    public int getNumber() {
         return this.number;
     }
 
     //---------------------------------------------
 
-    public double getPrice(){
+    public double getPrice() {
         return this.price;
     }
     //---------------------------------------------
@@ -75,36 +75,60 @@ public abstract class Product {
     public int getAvailable() {
         return numberOfAvailable;
     }
+    //---------------------------------------------
 
     public void setID(StringBuilder ID) {
         this.ID = ID;
     }
+    //---------------------------------------------
 
     public void setName(String name) {
         this.name = name;
     }
-
-    public void setNumber(int number) {
-        this.number = number;
-    }
+    //---------------------------------------------
 
     public void setPrice(double price) {
         this.price = price;
     }
+    //---------------------------------------------
 
     public void setNumberOfAvailable(int numberOfAvailable) {
         this.numberOfAvailable = numberOfAvailable;
     }
+    //---------------------------------------------
 
     public Collection<Comment> getComments() {
         return comments;
     }
+    //---------------------------------------------
 
-    public double getAverageScore(){
+    public double getAverageScore() {
         double sum = 0;
         for (int i : buyersScores) {
             sum += i;
         }
         return sum / buyersScores.size();
+    }
+
+    //---------------------------------------------
+
+    @Override
+    public int compareTo(Product that) {
+
+
+        if (this.name.compareTo(that.name) != 0) return this.name.compareTo(that.name);
+//////////////
+        else if (this.getAverageScore() > that.getAverageScore())
+            return 1;
+        else if (this.getAverageScore() < that.getAverageScore())
+            return -1;
+//////////////
+        else if(this.price < that.price)
+            return 1;
+        else if (this.price > that.price) 
+            return -1;
+//////////////
+        else return Integer.compare(this.numberOfAvailable, that.numberOfAvailable);
+
     }
 }

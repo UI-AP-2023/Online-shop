@@ -33,7 +33,7 @@ public class Discount {
         return discountPercent;
     }
 
-    public LocalDate getExpirationDate() {
+    public int getExpirationDate() {
         return expirationDate;
     }
 

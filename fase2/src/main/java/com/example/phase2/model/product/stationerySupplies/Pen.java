@@ -8,7 +8,8 @@ import com.example.phase2.model.product.ProductCategory;
 public class Pen extends StationerySupplies implements Discountable {
 
     private String color;
-    private int discountPercent = 0;
+    private static int discountPercent = 0;
+
     //0000000000000000000000000000000000000000000000000===CONSTRUCTOR
 
     public Pen(String country, String color, String name, int nmbrAvailable, double price) {
@@ -39,8 +40,13 @@ public class Pen extends StationerySupplies implements Discountable {
     }
 
     @Override
+    public double getPrice(){
+        return getPriceWithDiscount();
+    }
+
+    @Override
     public void setDiscountPercent(int percent) {
-        this.discountPercent = percent;
+        discountPercent = percent;
     }
 
 

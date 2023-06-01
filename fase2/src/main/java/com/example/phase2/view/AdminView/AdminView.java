@@ -37,8 +37,7 @@ public interface AdminView {
 
                 case "DISCOUNT" -> makeDiscountCodeView();
 
-                case "DISCOUNTABLE" -> {
-                }
+                case "DISCOUNTABLE" -> setDiscountablePercentage();
 
                 case "EXIT" -> {
                     ModelData.setYou(null);
@@ -58,6 +57,15 @@ public interface AdminView {
                 default -> print(order + " not found...\n\n");
             }
         }
+    }
+
+    static void setDiscountablePercentage() {
+
+        Scanner sc = new Scanner(System.in);
+
+        int discountPercentage = sc.nextInt();
+
+        AdminController.setDiscountPercentage(discountPercentage);
     }
 
     static void makeDiscountCodeView() {
