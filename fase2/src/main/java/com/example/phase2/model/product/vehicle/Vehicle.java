@@ -25,4 +25,8 @@ public abstract class Vehicle extends Product {
     public void setCompanyName(String companyName) {
         this.companyName = companyName;
     }
+
+    public String getName() {
+        return this.name;
+    }
 }

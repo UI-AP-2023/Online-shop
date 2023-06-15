@@ -17,7 +17,7 @@ public class Office extends StationerySupplies {
         this.paperType = paperType;
 
         //set ID for every object with its properties
-        this.ID = new StringBuilder(this.getClass().getName()+"-"+name+"-"+numberOfSheets+"Sheets-"+paperType+"-"+country);
+        this.ID = new StringBuilder("OFFICE-"+name+"-"+numberOfSheets+"Sheets-"+paperType+"-"+country);
 
         ModelData.getProducts().add(this);
 
@@ -40,5 +40,19 @@ public class Office extends StationerySupplies {
 
     public void setPaperType(String paperType) {
         this.paperType = paperType;
+    }
+
+    @Override
+    public String toString() {
+        return "\nOffice{" +
+                "\nnumberOfSheets=" + numberOfSheets +
+                "\npaperType='" + paperType + '\'' +
+                "\nID=" + ID +
+                "\nname='" + name + '\'' +
+                "\nprice=" + price +
+                "\nBuyers score=" + this.getAverageScore() +
+                "\nnumberOfAvailable=" + numberOfAvailable +
+                "\nnumber=" + number +
+                "}\n\n";
     }
 }

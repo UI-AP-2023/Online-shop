@@ -202,8 +202,8 @@ public interface AdminController {
         office.setPrice(price);
     }
 
-    static void EditThisPenController(Product product, String name, String country,
-                                      String color, int nmbrAvailable, double price) {
+    static void EditThisPenController(Product product, String country,
+                                      String color,  String name,int nmbrAvailable, double price) {
 
         Pen pen = (Pen) product;
 
@@ -244,12 +244,18 @@ public interface AdminController {
     static void addRandomDiscountCode(int discountPercent, int daysRemain, int capacity) {
 
         Discount discount = new Discount(discountPercent, daysRemain, capacity);
+
+        AdminView.printDiscountCode(discount.getDiscountCode());
+
         ModelData.getDiscountCodes().add(discount);
     }
 
     static void addThisDiscountCode(int discountPercent, int daysRemain, int capacity, String order) {
 
         Discount discount = new Discount(discountPercent, daysRemain, capacity, order);
+
+        AdminView.printDiscountCode(discount.getDiscountCode());
+
         ModelData.getDiscountCodes().add(discount);
     }
 
@@ -257,5 +263,16 @@ public interface AdminController {
 
         new Pen("","","",0,0).setDiscountPercent(discountPercentage);
         new Pencil("",PencilType.H2,"",0,0).setDiscountPercent(discountPercentage);
+    }
+
+    static void editThisOfficeController(Office sut, String country, int numberOfSheets, String typeOfPaper
+            , String name, int numberOfAvailable, int price) {
+
+        sut.setName(name);
+        sut.setCountry(country);
+        sut.setNumberOfAvailable(numberOfAvailable);
+        sut.setNumberOfSheets(numberOfSheets);
+        sut.setPaperType(typeOfPaper);
+        sut.setPrice(price);
     }
 }

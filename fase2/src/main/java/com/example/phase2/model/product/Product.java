@@ -115,20 +115,23 @@ public class Product implements Comparable<Product> {
     @Override
     public int compareTo(Product that) {
 
-
-        if (this.name.compareTo(that.name) != 0) return this.name.compareTo(that.name);
+        if (this.name.compareTo(that.name) > 0) return -1;
+        else if (this.name.compareTo(that.name) < 0) return 1;
 //////////////
         else if (this.getAverageScore() > that.getAverageScore())
             return 1;
         else if (this.getAverageScore() < that.getAverageScore())
             return -1;
 //////////////
-        else if(this.price < that.price)
+        else if (this.price < that.price)
             return 1;
-        else if (this.price > that.price) 
+        else if (this.price > that.price)
             return -1;
 //////////////
         else return Integer.compare(this.numberOfAvailable, that.numberOfAvailable);
+    }
 
+    public String getName() {
+        return this.name;
     }
 }

@@ -7,4 +7,8 @@ module com.example.fase2 {
     exports com.example.phase2;
     exports com.example.phase2.exceptions;
     opens com.example.phase2.exceptions to javafx.fxml;
+    exports com.example.phase2.UI;
+    opens com.example.phase2.UI to javafx.fxml;
+    exports com.example.phase2.view.BuyerView;
+    opens com.example.phase2.view.BuyerView to javafx.fxml;
 }

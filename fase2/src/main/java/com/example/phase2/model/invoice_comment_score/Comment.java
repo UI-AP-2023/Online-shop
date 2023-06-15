@@ -40,5 +40,17 @@ public class Comment {
 
     //--------------------------------------------------------------
 
+
+    public Buyer getCommenter() {
+        return commenter;
+    }
+
+    public String getComment() {
+        return comment;
+    }
+
+    public boolean getBoughtByCommenter() {
+        return boughtByCommenter;
+    }
 }
 

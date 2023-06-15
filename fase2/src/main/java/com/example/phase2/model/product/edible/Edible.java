@@ -45,4 +45,18 @@ public class Edible extends Product {
     public void setExpirationDate(String expirationDate) {
         ExpirationDate = expirationDate;
     }
+
+    @Override
+    public String toString() {
+        return "\nEdible{" +
+                "\nproduceDate='" + produceDate + '\'' +
+                "\nExpirationDate='" + ExpirationDate + '\'' +
+                "\nID=" + ID +
+                "\nname='" + name + '\'' +
+                "\nprice=" + price +
+                "\nnumberOfAvailable=" + numberOfAvailable +
+                "\nbuyersScores=" + this.getAverageScore() +
+                "\nnumber=" + number +
+                "}\n\n";
+    }
 }

@@ -43,4 +43,18 @@ public class Car extends Vehicle {
     public void setAutomaticGearbox(boolean automaticGearbox) {
         this.automaticGearbox = automaticGearbox;
     }
+
+    @Override
+    public String toString() {
+        return "Car{" +
+                "\nengineVolume=" + engineVolume +
+                "\nautomaticGearbox=" + automaticGearbox +
+                "\nID=" + ID +
+                "\nname='" + name + '\'' +
+                "\nBuyers score="+this.getAverageScore()+
+                "\nprice=" + price +
+                "\nnumberOfAvailable=" + numberOfAvailable +
+                "\nnumber=" + number +
+                "}\n\n";
+    }
 }

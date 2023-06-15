@@ -1,12 +1,13 @@
 package com.example.phase2.view.AdminView;
 
+import com.example.fase2.exceptions.InvalidLoginException;
 import com.example.phase2.controller.AdminController;
 import com.example.phase2.exceptions.InvalidID;
 import com.example.phase2.model.ModelData;
 import com.example.phase2.model.product.Product;
 import com.example.phase2.model.product.stationerySupplies.PencilType;
 import com.example.phase2.model.product.vehicle.BikeType;
-import com.example.phase2.view.LoginPageView;
+import com.example.phase2.view.BuyerView.LoginPageView;
 
 import java.util.Objects;
 import java.util.Scanner;
@@ -14,7 +15,7 @@ import java.util.Scanner;
 public interface AdminView {
 
     //-------------------------------------------------------------------------------------------------
-    static void AdminShowOptions() {
+    static void AdminShowOptions() throws InvalidLoginException {
 
         System.out.println(" PLEASE ENTER THE COMMAND (...ALL LETTERS SHOULD BE CAPITAL...) HELP FOR COMMANDS GUID\n");
 
@@ -74,18 +75,14 @@ public interface AdminView {
 
         String order = scanner.next();
 
-        if (Objects.equals(order, "random")) {
+        int discountPercent = scanner.nextInt();
+        int daysRemain = scanner.nextInt();
+        int capacity = scanner.nextInt();
 
-            int discountPercent = scanner.nextInt();
-            int daysRemain = scanner.nextInt();
-            int capacity = scanner.nextInt();
+        if (Objects.equals(order, "random")) {
 
             AdminController.addRandomDiscountCode(discountPercent, daysRemain, capacity);
         } else  {
-
-            int discountPercent = scanner.nextInt();
-            int daysRemain = scanner.nextInt();
-            int capacity = scanner.nextInt();
 
             AdminController.addThisDiscountCode(discountPercent, daysRemain, capacity, order);
         }
@@ -95,7 +92,7 @@ public interface AdminView {
 
         Scanner scanner = new Scanner(System.in);
 
-        String removingProductID = scanner.next();
+        String removingProductID = scanner.nextLine();
 
         try {
 
@@ -112,7 +109,7 @@ public interface AdminView {
 
         Scanner scanner = new Scanner(System.in);
 
-        String productID = scanner.next();
+        String productID = scanner.nextLine();
 
         try {
 
@@ -134,34 +131,34 @@ public interface AdminView {
 
         switch (category) {
 
-            case "PC":
+            case "PC"->
                 addPC();
 
-            case "FLASH":
+            case "FLASH"->
                 addFlash();
 
-            case "SSD":
+            case "SSD"->
                 addSSD();
 
-            case "CAR":
+            case "CAR"->
                 addCar();
 
-            case "BIKE":
+            case "BIKE"->
                 addBike();
 
-            case "OFFICE":
+            case "OFFICE"->
                 addOffice();
 
-            case "PEN":
+            case "PEN"->
                 addPen();
 
-            case "PENCIL":
+            case "PENCIL"->
                 addPencil();
 
-            case "EDIBLE":
+            case "EDIBLE"->
                 addEdible();
 
-            default:
+            default->
                 print(category + "not found\n\n");
         }
     }
@@ -441,5 +438,9 @@ public interface AdminView {
         double price = scanner.nextDouble();
 
         AdminController.editThisPencilController(product, name, country, type, nmbrAvailable, price);
+    }
+
+    static void printDiscountCode(String discountCode) {
+        print("\""+discountCode+"\"");
     }
 }

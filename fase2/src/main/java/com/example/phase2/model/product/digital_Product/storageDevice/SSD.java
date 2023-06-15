@@ -17,7 +17,7 @@ public class SSD extends StorageDevice {
         this.writingSpeed = writingSpeed;
 
         //set ID for every object with its properties
-        this.ID = new StringBuilder(this.getClass().getName() + "-" + name + "-" + capacity + "GB-" + readingSpeed + "RS-" + writingSpeed + "WS");
+        this.ID = new StringBuilder("SSD-" + name + "-" + capacity + "GB-" + readingSpeed + "RS-" + writingSpeed + "WS");
 
 
         this.category = ProductCategory.SSD;
@@ -40,5 +40,19 @@ public class SSD extends StorageDevice {
 
     public void setWritingSpeed(double writingSpeed) {
         this.writingSpeed = writingSpeed;
+    }
+
+    @Override
+    public String toString() {
+        return "\nSSD{" +
+                "\nreadingSpeed=" + readingSpeed +
+                "\nwritingSpeed=" + writingSpeed +
+                "\nID=" + ID +
+                "\nname='" + name + '\'' +
+                "\nprice=" + price +
+                "\nnumberOfAvailable=" + numberOfAvailable +
+                "\nBuyers score=" + this.getAverageScore() +
+                "\nnumber=" + number +
+                "}\n\n";
     }
 }

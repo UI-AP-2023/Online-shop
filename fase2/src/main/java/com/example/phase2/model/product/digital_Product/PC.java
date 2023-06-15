@@ -18,7 +18,7 @@ public class PC extends DigitalProduct {
         this.ramMemoryCapacity = ramMemoryCapacity;
 
         //set ID for every object with its properties
-        this.ID = new StringBuilder(this.getClass().getName() + name + "-" + CPU_Model + "-" + ramMemoryCapacity);
+        this.ID = new StringBuilder("PC-" + name + "-" + CPU_Model + "-" + ramMemoryCapacity);
 
 
         this.category = ProductCategory.PC;
@@ -43,5 +43,17 @@ public class PC extends DigitalProduct {
         this.CPU_Model = CPU_Model;
     }
 
-
+    @Override
+    public String toString() {
+        return "\nPC{" +
+                "\nCPU_Model='" + CPU_Model + '\'' +
+                "\nramMemoryCapacity=" + ramMemoryCapacity +
+                "\nID=" + ID +
+                "\nname='" + name + '\'' +
+                "\nprice=" + price +
+                "\nnumberOfAvailable=" + numberOfAvailable +
+                "\nbuyersScore=" + this.getAverageScore() +
+                "\nnumber=" + number +
+                "}\n\n";
+    }
 }

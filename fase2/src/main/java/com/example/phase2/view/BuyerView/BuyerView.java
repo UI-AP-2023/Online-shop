@@ -15,7 +15,6 @@ import com.example.phase2.model.product.stationerySupplies.Pen;
 import com.example.phase2.model.product.stationerySupplies.Pencil;
 import com.example.phase2.model.product.vehicle.Bike;
 import com.example.phase2.model.product.vehicle.Car;
-import com.example.phase2.view.LoginPageView;
 
 import java.util.Scanner;
 
@@ -38,7 +37,8 @@ public interface BuyerView {
 
             case 2 -> showBuyerProfileOptions();
 
-            case 3 -> LoginPageView.showLoginPage();
+            case 3 ->LoginPageView.showLoginPage();
+
         }
     }
 
@@ -362,7 +362,8 @@ public interface BuyerView {
             }
 
             showProduct(product.getNumber());
-        }
+        } else
+            print("You did not buy this product!\n\n");
 
     }
 
@@ -392,7 +393,7 @@ public interface BuyerView {
 
         if (BuyerController.checkNumberForBuying(product, numberOfProductsYouWant)) {
 
-            BuyerController.AddProductToCart(product, numberOfProductsYouWant);
+            BuyerController.addProductToCart(product, numberOfProductsYouWant);
 
             print("ADDED TO THE CART!\n");
 
@@ -461,12 +462,39 @@ public interface BuyerView {
         int order = scanner.nextInt();
 
         switch (order) {
-            case 1 -> BuyerController.buyThisCart();
+            case 1 -> buyThisCartView();//BuyerController.buyThisCart();
 
             case 2 -> removeThisFromCart();
 
             case 3 -> showBuyerProfileOptions();
         }
+    }
+
+    static void buyThisCartView() {
+
+        print("1.Use discount code\n" +
+                "2.Buy with no discount code");
+
+        Scanner scanner = new Scanner(System.in);
+
+        int order = scanner.nextInt();
+
+        switch (order){
+
+            case 1 -> giveDiscountCode();
+
+            case 2 -> BuyerController.buyThisCart("");
+        }
+    }
+
+    static void giveDiscountCode() {
+        print("Discount code:");
+
+        Scanner sc = new Scanner(System.in);
+
+        String code= sc.nextLine();
+
+        BuyerController.buyThisCart(code);
     }
 
     static void removeThisFromCart() {
@@ -656,4 +684,14 @@ public interface BuyerView {
     }
 
 
+    static void printThanksForShopping() {
+        print("Thanks for your Shopping!\n\n");
+    }
+
+    static void discountCodeNotFound() {
+
+        print("discount code doesnt found!");
+
+        buyThisCartView();
+    }
 }

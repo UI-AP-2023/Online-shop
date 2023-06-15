@@ -1,5 +1,7 @@
-package com.example.phase2.view;
+package com.example.phase2.view.BuyerView;
 
+import com.example.fase2.exceptions.InvalidLoginException;
+import com.example.fase2.exceptions.ThisIsCustomer;
 import com.example.phase2.controller.BuyerController;
 import com.example.phase2.controller.LoginPageController;
 import com.example.phase2.exceptions.InUsedUserNameException;
@@ -38,8 +40,16 @@ public interface LoginPageView {
         System.out.println("PASSWORD: ");
         String Password = scanner.nextLine();
 
-        LoginPageController.loginCheck(UserName, Password);
+        try {
+            LoginPageController.loginCheck(UserName, Password);
+        } catch (InvalidLoginException e) {
+
+            System.out.println("Invalid information");
+
+            showLoginPage();
+        }
     }
+
 
 
     //====================================================================
@@ -61,6 +71,7 @@ public interface LoginPageView {
 
                 BuyerController.checkUserName(userName);
                 usernameChecked = true;
+
             } catch (InUsedUserNameException e) {
                 System.out.println("\nTHIS USER NAME IS ALREADY EXIST , TRY ANOTHER ONE: ");
             }
@@ -124,14 +135,14 @@ public interface LoginPageView {
 
         ModelData.addCustomer(new Buyer(userName, password, phone, email));
 
-        System.out.println("...YOUR SIGN UP REQUEST SENT FOR ADMIN...\n");
+        System.out.println("...YOU ARE SIGNED IN SUCCESSFULLY...\n");
 
         showLoginPage();
     }
 
     //===================================================================
 
-    static void notFoundView() {
+    static void notFoundView() throws InvalidLoginException {
 
         System.out.println("\nYOUR USER NAME OR PASSWORD IS NOT CORRECT\n");
 

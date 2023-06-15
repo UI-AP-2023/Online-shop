@@ -17,7 +17,7 @@ public class FlashMemory extends StorageDevice {
         this.USB_Version = USB_Version;
 
         //set ID for every object with its properties
-        this.ID = new StringBuilder(this.getClass().getName() + "-" + name + "-" + USB_Version);
+        this.ID = new StringBuilder("FlashMemory-" + name + "-" + USB_Version);
 
 
         this.category = ProductCategory.FLASH;
@@ -37,12 +37,13 @@ public class FlashMemory extends StorageDevice {
 
     @Override
     public String toString() {
-        return "FlashMemory{" +
-                "USB_Version=" + USB_Version +
-                ", ID=" + ID +
-                ", name='" + name + '\'' +
-                ", price=" + price +
-                ", numberOfAvailable=" + numberOfAvailable +
-                '}';
+        return "\nFlashMemory{" +
+                "\nUSB_Version=" + USB_Version +
+                "\nID=" + ID +
+                "\nname='" + name + '\'' +
+                "\nprice=" + price +
+                "\n Buyers score=" + this.getAverageScore() +
+                "\nnumberOfAvailable=" + numberOfAvailable +
+                "}\n\n";
     }
 }

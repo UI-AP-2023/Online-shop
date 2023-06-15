@@ -10,7 +10,7 @@ public class Score {
 
     //========================
 
-    Score(Buyer buyer, int score) {
+    public Score(Buyer buyer, int score) {
 
         this.buyer = buyer;
         this.score = score;

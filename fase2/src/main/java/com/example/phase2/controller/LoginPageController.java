@@ -1,5 +1,7 @@
 package com.example.phase2.controller;
 
+import com.example.fase2.exceptions.InvalidLoginException;
+import com.example.fase2.exceptions.ThisIsCustomer;
 import com.example.phase2.exceptions.InvalidEmailException;
 import com.example.phase2.exceptions.InvalidPasswordException;
 import com.example.phase2.exceptions.InvalidPhoneNumberException;
@@ -7,7 +9,7 @@ import com.example.phase2.model.ModelData;
 import com.example.phase2.model.userAccount.Buyer;
 import com.example.phase2.view.AdminView.AdminView;
 import com.example.phase2.view.BuyerView.BuyerView;
-import com.example.phase2.view.LoginPageView;
+import com.example.phase2.view.BuyerView.LoginPageView;
 import java.util.Objects;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -21,10 +23,9 @@ public interface LoginPageController {
      * check username and password for customers  if the user is a customer it calls buyers view
      * else if its admin , calls admin view
      */
-    static void loginCheck(String username, String password) {
+    static void loginCheck(String username, String password) throws InvalidLoginException {
 
         // if  customer
-        boolean isCustomer = false;
 
         for (Buyer buyer : ModelData.getCustomers()) {
 
@@ -33,25 +34,22 @@ public interface LoginPageController {
                 // to know who is using the program
                 ModelData.setYou(buyer);
 
-                isCustomer = true;
-
                 BuyerView.showBuyerMainMenu();
-                //------------------------------------
-//                LoginPageView.showLoginPage();
 
                 break;
             }
         }
 
         //if s/he is admin
-        if (!isCustomer && Objects.equals(ModelData.getAdmin().getUserName(), username) && Objects.equals(ModelData.getAdmin().getPassword(), password)) {
+        if (Objects.equals(ModelData.getAdmin().getUserName(), username) && Objects.equals(ModelData.getAdmin().getPassword(), password)) {
 
             AdminView.AdminShowOptions();
             //--------------------------------
             LoginPageView.showLoginPage();
 
         } else {
-            LoginPageView.notFoundView();
+//            LoginPageView.notFoundView();
+            throw new InvalidLoginException();
         }
     }
 
@@ -61,6 +59,7 @@ public interface LoginPageController {
 
         Pattern emailPattern = Pattern.compile("^\\w+@\\D+\\.(org|com)");
         Matcher emailMatcher = emailPattern.matcher(email);
+
         if (!emailMatcher.find()) throw new InvalidEmailException();
     }
 
@@ -82,11 +81,6 @@ public interface LoginPageController {
     }
 
     //====================================================================================================
-
-    static void signupController(Buyer requester) {
-
-        ModelData.addCustomer(requester);
-    }
 
     //==================================================================================================
 

@@ -12,20 +12,21 @@ public class Pencil extends StationerySupplies implements Discountable {
 
     //0000000000000000000000000000000000000000000000000===CONSTRUCTOR
 
-    public Pencil(String country, PencilType type, String name, int nmbrAvailable,double price) {
-        super(country, name, nmbrAvailable,price);
+    public Pencil(String country, PencilType type, String name, int nmbrAvailable, double price) {
+        super(country, name, nmbrAvailable, price);
         this.type = type;
 
         //set ID for every object with its properties
-        this.ID=new StringBuilder(this.getClass().getName()+"-"+name+"-"+type.toString()+"-"+country);
+        this.ID = new StringBuilder("PENCIL-" + name + "-" + type.toString() + "-" + country);
 
         ModelData.getProducts().add(this);
 
-        this.category= ProductCategory.PENCIL;
+        this.category = ProductCategory.PENCIL;
 
         ModelData.getPencils().add(this);
     }
-//==============================================================
+
+    //==============================================================
     public PencilType getType() {
         return type;
     }
@@ -37,7 +38,7 @@ public class Pencil extends StationerySupplies implements Discountable {
 //==============================================================
 
     @Override
-    public double getPrice(){
+    public double getPrice() {
         return getPriceWithDiscount();
     }
 //==============================================================
@@ -51,5 +52,18 @@ public class Pencil extends StationerySupplies implements Discountable {
     @Override
     public void setDiscountPercent(int percent) {
         discountPercent = percent;
+    }
+
+    @Override
+    public String toString() {
+        return "\nPencil{" +
+                "\ntype=" + type +
+                "\nID=" + ID +
+                "\nname='" + name + '\'' +
+                "\nprice=" + price +
+                "\nnumberOfAvailable=" + numberOfAvailable +
+                "\nBuyers score=" + this.getAverageScore() +
+                "\nnumber=" + number +
+                "}\n\n";
     }
 }

@@ -17,7 +17,7 @@ public class Pen extends StationerySupplies implements Discountable {
         this.color = color;
 
         //set ID for every object with its properties
-        this.ID = new StringBuilder(this.getClass().getName() + "-" + name + "-" + color + "-" + country);
+        this.ID = new StringBuilder("PEN-" + name + "-" + color + "-" + country);
 
         ModelData.getProducts().add(this);
 
@@ -49,5 +49,16 @@ public class Pen extends StationerySupplies implements Discountable {
         discountPercent = percent;
     }
 
-
+    @Override
+    public String toString() {
+        return "Pen{" +
+                "color='" + color + '\'' +
+                ", ID=" + ID +
+                ", name='" + name + '\'' +
+                ", price=" + price +
+                "\nBuyers score=" + this.getAverageScore() +
+                ", numberOfAvailable=" + numberOfAvailable +
+                ", number=" + number +
+                '}';
+    }
 }

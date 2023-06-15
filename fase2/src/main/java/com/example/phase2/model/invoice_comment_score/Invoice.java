@@ -15,7 +15,7 @@ public class Invoice {
     private final StringBuilder invoiceID;
 
     //==================================================================================
-    Invoice(String date, double paidAmount, ArrayList<Product> Orders) {
+    public Invoice(String date, double paidAmount, ArrayList<Product> Orders) {
 
         this.date = date;
         this.paidAmount = paidAmount;
